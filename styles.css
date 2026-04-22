@@ -73,6 +73,10 @@ body {
   transition: opacity 0.15s ease;
 }
 
+.nav-name:hover {
+  color: var(--accent);
+}
+
 .nav-name.swapping {
   opacity: 0;
 }
