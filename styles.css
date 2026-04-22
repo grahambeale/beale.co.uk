@@ -1,11 +1,11 @@
 /* ─── Variables ──────────────────────────────────────────────────────────── */
 
 :root {
-  --bg:       #1a1612;
-  --text:     #f5f0e8;
-  --muted:    #7a7060;
-  --accent:   #c8840a;
-  --border:   #2e2820;
+  --bg:       #252220;
+  --text:     #E8E4DC;
+  --muted:    #888480;
+  --accent:   #E8960A;
+  --border:   #3A3633;
   --max-w:    900px;
   --pad-x:    clamp(1.5rem, 6vmin, 5rem);
   --section-gap: clamp(4rem, 8vw, 7rem);
@@ -28,9 +28,8 @@ html {
 }
 
 body {
-  font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   font-size: 1rem;
-  font-weight: 300;
   line-height: 1.6;
   color: var(--text);
   background-color: var(--bg);
@@ -122,7 +121,6 @@ section {
 }
 
 h2 {
-  font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(2rem, 5vw, 3.25rem);
   font-weight: 700;
   line-height: 1;
@@ -144,11 +142,10 @@ h2 {
   align-items: center;
   gap: 0.375rem;
   background-color: var(--accent);
-  color: var(--bg);
-  font-weight: 500;
+  color: #252220;
+  font-weight: 700;
   font-size: 0.875rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.01em;
   text-decoration: none;
   padding: 0.625rem 1.25rem;
   min-height: 44px;
@@ -157,8 +154,8 @@ h2 {
 }
 
 .btn:hover {
-  background-color: #d9950b;
-  color: var(--bg);
+  background-color: #F0A828;
+  color: #252220;
   text-decoration: none;
 }
 
@@ -175,8 +172,8 @@ h2 {
 
 .btn.btn-secondary:hover {
   background-color: transparent;
-  color: #d9950b;
-  box-shadow: inset 0 0 0 2px #d9950b;
+  color: #F0A828;
+  box-shadow: inset 0 0 0 2px #F0A828;
 }
 
 .btn.btn-secondary:focus-visible {
@@ -209,9 +206,8 @@ h2 {
 }
 
 #hero h1 {
-  font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(3.75rem, 11vw, 7.5rem);
-  font-weight: 900;
+  font-weight: 700;
   line-height: 0.92;
   letter-spacing: -0.03em;
   margin-bottom: 1.5rem;
