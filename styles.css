@@ -172,13 +172,15 @@ h2 {
 .btn.btn-secondary {
   background-color: transparent;
   color: var(--accent);
-  box-shadow: inset 0 0 0 2px var(--accent);
+  box-shadow: none;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .btn.btn-secondary:hover {
   background-color: transparent;
   color: #F0A828;
-  box-shadow: inset 0 0 0 2px #F0A828;
+  box-shadow: none;
 }
 
 .btn.btn-secondary:focus-visible {
