@@ -37,34 +37,14 @@
   .hero {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 5.5rem 2rem 2.5rem;
+    padding: 4.5rem 2rem 1.5rem;
     display: grid;
     grid-template-columns: 1fr 400px;
-    gap: 4rem;
-    align-items: end;
+    gap: 3rem;
+    align-items: start;
   }
 
   .hero-left {}
-
-  .hero-eyebrow {
-    font-size: 0.7rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 500;
-    margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .hero-eyebrow::before {
-    content: '';
-    display: block;
-    width: 2rem;
-    height: 1px;
-    background: var(--muted);
-  }
 
   .hero-name {
     font-family: 'Inter', sans-serif;
@@ -124,25 +104,6 @@
   .tag-dot.teal { background: var(--teal); }
   .tag-dot.indigo { background: var(--indigo); }
   .tag-dot.rust { background: var(--rust); }
-
-  .hero-contact {
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid #3A3633;
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-  }
-
-  .hero-contact a {
-    font-size: 0.8rem;
-    color: var(--muted);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: color 0.2s;
-  }
-
-  .hero-contact a:hover { color: var(--cream); }
 
   /* ── DIVIDER ── */
   .divider {
@@ -396,8 +357,7 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  .hero-eyebrow { animation: fadeUp 0.5s ease both; }
-  .hero-name { animation: fadeUp 0.5s 0.1s ease both; }
+  .hero-name { animation: fadeUp 0.5s ease both; }
   .hero-description { animation: fadeUp 0.5s 0.2s ease both; }
   .hero-right { animation: fadeUp 0.5s 0.25s ease both; }
   .case-card:nth-child(1) { animation: fadeUp 0.5s 0.3s ease both; }
@@ -430,14 +390,8 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <p class="hero-eyebrow">Graham Beale · Case Studies</p>
-    <h1 class="hero-name">Graham<br>Beale</h1>
-    <p class="hero-description">
-      <strong>Senior design and product leader</strong> with over twenty years of experience across cybersecurity, fintech, media, and marketplace platforms. He builds human-centred digital products and the conditions that make them possible: the teams, the standards, and the cross-functional trust that makes good work sustainable.
-    </p>
-    <p class="hero-description" style="margin-top:0.75rem;">
-      Currently available from July 2026. Open to director, head, and VP-level roles where design, product, and engineering work as genuine partners.
-    </p>
+    <h1 class="hero-name">Case<br>Studies</h1>
+    <p class="hero-description">Four leadership case studies spanning research and strategy, accessibility, design systems, and human-centred AI.</p>
   </div>
   <div class="hero-right">
     <div class="hero-tags">
@@ -445,14 +399,6 @@
       <div class="hero-tag"><span class="tag-dot teal"></span>Accessibility practice building</div>
       <div class="hero-tag"><span class="tag-dot indigo"></span>Design systems at scale</div>
       <div class="hero-tag"><span class="tag-dot rust"></span>Human-centred AI leadership</div>
-      <div class="hero-tag" style="margin-top:0.5rem;"><span class="tag-dot" style="background:var(--muted);"></span>Cross-functional team building</div>
-      <div class="hero-tag"><span class="tag-dot" style="background:var(--muted);"></span>ISO 30071-1:2019 · NIST · Empowered product model</div>
-      <div class="hero-tag"><span class="tag-dot" style="background:var(--muted);"></span>BBC · Yahoo · Yell · Nationwide · Mimecast</div>
-    </div>
-    <div class="hero-contact">
-      <a href="mailto:graham@beale.co.uk">graham@beale.co.uk</a>
-      <a href="https://linkedin.com/in/grahambeale" target="_blank">linkedin.com/in/grahambeale</a>
-      <a href="https://beale.co.uk" target="_blank">beale.co.uk</a>
     </div>
   </div>
 </section>
