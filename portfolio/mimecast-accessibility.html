@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Building an Accessibility Practice — Graham Beale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #E8E4DC;
+    --cream: #E8E4DC;
+    --warm-mid: #3A3633;
+    --teal: #0d6e6e;
+    --teal-light: #3aa8a8;
+    --rule: #3A3633;
+    --muted: #888480;
+    --white: #ffffff;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 18px; scroll-behavior: smooth; }
+  body { background: #252220; color: var(--ink); font-family: 'Inter', sans-serif; font-weight: 400; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  .masthead { background: #252220; padding: 2rem 0 0; }
+  .masthead-inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+  .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--muted); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; transition: color 0.2s; margin-bottom: 3rem; }
+  .back-link:hover { color: var(--teal-light); }
+  .back-link::before { content: '&#8592;'; font-size: 0.9rem; }
+  .eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+  .tag { background: var(--teal); color: var(--white); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.75rem; }
+  .year { color: var(--muted); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .hero-title { font-family: 'Inter', sans-serif; font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 700; line-height: 1.08; color: var(--cream); letter-spacing: -0.02em; margin-bottom: 0.5rem; animation: fadeUp 0.6s ease both; }
+  .hero-title em { font-style: italic; color: var(--teal-light); }
+  .hero-subtitle { font-family: 'Inter', sans-serif; font-size: clamp(1rem, 2.5vw, 1.3rem); font-weight: 400; font-style: italic; color: var(--muted); margin-bottom: 3rem; animation: fadeUp 0.6s 0.1s ease both; }
+  .meta-strip { border-top: 1px solid #3A3633; display: grid; grid-template-columns: repeat(3, 1fr); padding: 1.5rem 0; gap: 1rem; animation: fadeUp 0.6s 0.2s ease both; }
+  .meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+  .meta-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .meta-value { font-size: 0.9rem; color: var(--cream); font-weight: 400; }
+  .stat-bar { background: var(--teal); padding: 2rem 0; }
+  .stat-bar-inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; text-align: center; }
+  .stat-item { display: flex; flex-direction: column; gap: 0.2rem; }
+  .stat-number { font-family: 'Inter', sans-serif; font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; color: var(--white); line-height: 1; }
+  .stat-label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.7); font-weight: 500; }
+  .content { max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; display: grid; grid-template-columns: 200px 1fr; gap: 3rem; align-items: start; }
+  .section-label { padding-top: 0.2rem; position: sticky; top: 2rem; }
+  .section-number { font-family: 'Inter', sans-serif; font-size: 3rem; font-weight: 700; color: #4a4440; line-height: 1; display: block; }
+  .section-title { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); margin-top: 0.5rem; display: block; }
+  .section-body h3 { font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 700; line-height: 1.3; color: #E8E4DC; margin-bottom: 1rem; margin-top: 2rem; }
+  .section-body h3:first-child { margin-top: 0; }
+  .section-body p { margin-bottom: 1.25rem; color: #C8C4BC; font-size: 1rem; }
+  .section-body p:last-child { margin-bottom: 0; }
+  .pull-quote { border-left: 3px solid var(--teal); margin: 2rem 0; padding: 1rem 0 1rem 1.5rem; }
+  .pull-quote p { font-family: 'Inter', sans-serif; font-size: 1.15rem; font-style: italic; font-weight: 400; color: #E8E4DC !important; line-height: 1.5; margin-bottom: 0.5rem !important; }
+  .pull-quote cite { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-style: normal; font-weight: 500; }
+  .barrier-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 2rem 0; }
+  .barrier-item { background: #2e2a26; padding: 1.25rem 1.5rem; display: flex; flex-direction: column; gap: 0.3rem; }
+  .barrier-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); }
+  .barrier-text { font-size: 0.9rem; color: #E8E4DC; font-style: italic; font-family: 'Inter', sans-serif; line-height: 1.4; }
+  .timeline { margin: 2rem 0; display: flex; flex-direction: column; gap: 0; }
+  .timeline-item { display: grid; grid-template-columns: 120px 1fr; gap: 1.5rem; position: relative; padding-bottom: 2rem; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-item::before { content: ''; position: absolute; left: 110px; top: 0.6rem; bottom: 0; width: 1px; background: var(--rule); }
+  .timeline-item:last-child::before { display: none; }
+  .timeline-marker { text-align: right; padding-top: 0.1rem; position: relative; z-index: 1; }
+  .timeline-marker::after { content: ''; position: absolute; right: -1.5rem; top: 0.45rem; width: 8px; height: 8px; background: var(--teal); border-radius: 50%; }
+  .timeline-phase { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal); }
+  .timeline-title { font-weight: 500; font-size: 0.95rem; color: #E8E4DC; margin-bottom: 0.25rem; }
+  .timeline-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin: 0 !important; }
+  hr.section-rule { border: none; border-top: 1px solid var(--rule); margin: 4rem 0; }
+  .outcome-block { background: #2e2a26; padding: 2.5rem; margin: 2rem 0; }
+  .outcome-block p { color: var(--cream) !important; font-size: 1rem; }
+  .outcome-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal-light); font-weight: 500; margin-bottom: 1rem; display: block; }
+  .client-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 2rem 0; }
+  .client-item { background: #2e2a26; padding: 1.25rem 1.5rem; }
+  .client-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.4rem; display: block; }
+  .client-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.5; margin: 0 !important; }
+  .partners { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .partner-tag { background: #3A3633; color: #E8E4DC; font-size: 0.75rem; font-weight: 500; padding: 0.3rem 0.75rem; letter-spacing: 0.04em; }
+  .case-footer { border-top: 1px solid var(--rule); padding-top: 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-note { font-size: 0.8rem; color: var(--muted); max-width: 480px; line-height: 1.5; }
+  .footer-note strong { color: #E8E4DC; font-weight: 500; }
+  .next-case { text-decoration: none; display: flex; flex-direction: column; align-items: flex-end; gap: 0.2rem; }
+  .next-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .next-title { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 700; color: #E8E4DC; transition: color 0.2s; }
+  .next-case:hover .next-title { color: var(--teal); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 640px) {
+    .section { grid-template-columns: 1fr; gap: 1rem; }
+    .section-label { position: static; display: flex; align-items: baseline; gap: 0.75rem; }
+    .section-number { font-size: 1.8rem; }
+    .meta-strip { grid-template-columns: 1fr 1fr; }
+    .stat-bar-inner { grid-template-columns: 1fr 1fr; text-align: left; }
+    .barrier-grid { grid-template-columns: 1fr; }
+    .client-grid { grid-template-columns: 1fr; }
+    .case-footer { flex-direction: column; align-items: flex-start; }
+    .next-case { align-items: flex-start; }
+  }
+</style>
+<script>
+  if (sessionStorage.getItem("gb_portfolio_auth") !== "true") {
+    window.location.href = "enter.html";
+  }
+</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a href="/" class="back-link">All case studies</a>
+    <div class="eyebrow">
+      <span class="tag">Accessibility · Practice Building</span>
+      <span class="year">Mimecast · 2021&#8211;2025</span>
+    </div>
+    <h1 class="hero-title">Building accessibility<br><em>from assumption<br>to standard</em></h1>
+    <p class="hero-subtitle">ISO 30071-1:2019 embedded across a cybersecurity product portfolio</p>
+    <div class="meta-strip">
+      <div class="meta-item">
+        <span class="meta-label">Role</span>
+        <span class="meta-value">User Experience Director</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Timeline</span>
+        <span class="meta-value">2021&#8211;2025</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Scope</span>
+        <span class="meta-value">Strategy, practice build, QA, design system, culture</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="stat-bar">
+  <div class="stat-bar-inner">
+    <div class="stat-item">
+      <span class="stat-number">0</span>
+      <span class="stat-label">Products with WCAG audits at outset</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">100%</span>
+      <span class="stat-label">Sellable products with audits and VPATs on exit</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">3+</span>
+      <span class="stat-label">Sites approaching AA compliance</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">ISO</span>
+      <span class="stat-label">30071-1:2019 framework adopted</span>
+    </div>
+  </div>
+</div>
+
+<main class="content">
+
+  <div class="section">
+    <div class="section-label">
+      <span class="section-number">01</span>
+      <span class="section-title">The situation</span>
+    </div>
+    <div class="section-body">
+      <p>When Graham joined Mimecast, the organisation's maturity around accessibility and usability was low. There was no shared appreciation of why either mattered. Many products had not been revisited after their initial bugs were fixed, which meant maintenance had stalled and problems had accumulated unchecked. No feature or function had a WCAG audit. No product had a credible VPAT. No website met AA compliance.</p>
+      <p>The prevailing assumption was that this was acceptable. Mimecast served enterprise IT and security professionals. In the words of more than one stakeholder, these were technically sophisticated users who knew how to use complex technology. Accessibility was framed as a consumer concern, not an enterprise one.</p>
+      <p>The support data told a different story. Ticket volumes, customer escalations, and customer interviews pointed to real struggles with the product that were going unacknowledged. The assumption that enterprise users did not have accessibility needs was not grounded in evidence.</p>
+      <p>Graham saw accessibility not just as a compliance challenge but as a way to make the organisation more human-centred. The rules-based nature of accessibility standards meant they could be understood clearly across the whole organisation, in black and white, by people who had never engaged with UX thinking before. That made accessibility a practical entry point for raising the overall appreciation of user experience at Mimecast.</p>
+
+      <div class="pull-quote">
+        <p>The critical aim of accessibility initially was not compliance. It was making the business more human-centred and raising the long-term understanding of why user experience matters.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule">
+
+  <div class="section">
+    <div class="section-label">
+      <span class="section-number">02</span>
+      <span class="section-title">The resistance</span>
+    </div>
+    <div class="section-body">
+      <p>The internal barriers were widespread. Teams were busy. Adding accessibility requirements on top of existing delivery commitments did not go down well. People could rationalise why it was important when it was explained to them, but understanding something and creating space for it in a packed schedule are different things.</p>
+      <p>Graham's position in the organisation mattered here. He was at the same hierarchical level as the product and engineering leaders he was trying to bring along. He could not instruct teams to adopt accessibility standards. What he could do was use influencing skills, barter design resource, and create the conditions for teams to understand the value and choose to embed it into their project processes.</p>
+      <p>Part of that was very practical. Graham ran the company-wide induction for new starters at Mimecast, using that time to explain in detail why accessibility mattered, why the business was investing in it, and how it would help Mimecast commercially. Bringing it into the induction meant every new joiner encountered the rationale before they had formed habits about how the organisation worked.</p>
+
+      <div class="barrier-grid">
+        <div class="barrier-item">
+          <span class="barrier-label">What teams said</span>
+          <span class="barrier-text">"Our customers are clever. They know how to use complex technology."</span>
+        </div>
+        <div class="barrier-item">
+          <span class="barrier-label">What support data showed</span>
+          <span class="barrier-text">Ticket volumes, escalations, and interviews showing repeated usability and accessibility failures.</span>
+        </div>
+        <div class="barrier-item">
+          <span class="barrier-label">What teams felt</span>
+          <span class="barrier-text">"We're already busy. Adding something else to the list is not realistic right now."</span>
+        </div>
+        <div class="barrier-item">
+          <span class="barrier-label">What the evidence showed</span>
+          <span class="barrier-text">Commercial risk from incoming EU legislation, US federal procurement requirements, and customers writing accessibility into contracts.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule">
+
+  <div class="section">
+    <div class="section-label">
+      <span class="section-number">03</span>
+      <span class="section-title">The approach</span>
+    </div>
+    <div class="section-body">
+
+      <h3>Securing the right partner and sponsor</h3>
+      <p>Graham brought in Hassell Inclusive as the specialist partner, working directly with Jonathan Hassell as lead consultant. Jonathan is the author of ISO 30071-1:2019 and had previously served as Head of Accessibility at the BBC, where he worked closely with the RNIB and brought RNIB staff directly into the organisation to work alongside designers and engineers. Graham had worked with Jonathan during that period at BBC Radio 2, and trusted both his expertise and his ability to embed accessibility thinking into teams who had not previously engaged with it. Choosing the author of the standard was a deliberate signal: this was a capability build, not a compliance exercise.</p>
+      <p>Securing organisational commitment required work at a senior level. Harvey Seale, SVP Governance and Global DPO, became the executive sponsor after Graham framed the programme in terms that mattered to his function: governance credibility, regulatory positioning, and the opportunity to demonstrate leadership ahead of incoming legislation. Harvey gave ownership of the programme to Raeann Cando, Senior Director of Governance and Certification, who led the delivery of the programme from the governance side. The certification team took on project management of the work deliverables.</p>
+
+      <h3>Andrew Doyle and the audit programme</h3>
+      <p>In June 2022 Graham recruited Andrew Doyle directly from a renowned accessibility consultancy, leading the hire himself. Andrew's arrival was the moment the programme shifted from aspiration to execution. His first major piece of work was commissioning audits for every product sold to customers. From those audits, Andrew identified the most common failure patterns across the portfolio and created documentation showing engineers and designers precisely how to correct each one. He consulted directly with engineering and design teams to ensure those problems did not recur.</p>
+      <p>In tandem with the design system work, Andrew took this further. By working with the design and platform teams to build corrective patterns into Mimecast Elements, he effectively ended entire categories of accessibility problem through adoption of a new component standard. The issue could not come back because the component that caused it had been replaced. Andrew also created an accessibility framework for Mimecast that gave the organisation a clear structure for understanding what they needed to achieve and how to measure progress.</p>
+
+      <h3>Programme structure and timeline</h3>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <span class="timeline-phase">2021</span>
+          </div>
+          <div class="timeline-body">
+            <p class="timeline-title">Current state analysis and framework adoption</p>
+            <p class="timeline-desc">Baseline assessment confirmed the scale of the problem across the portfolio. ISO 30071-1:2019 adopted as the governing framework, giving the programme international credibility and connecting it to Mimecast's governance infrastructure.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <span class="timeline-phase">June 2022</span>
+          </div>
+          <div class="timeline-body">
+            <p class="timeline-title">Andrew Doyle joins as Accessibility Lead</p>
+            <p class="timeline-desc">Recruited directly from a renowned accessibility consultancy. Audits commissioned for every sellable product. Common failure patterns identified, documented, and shared with engineering and design teams. Accessibility framework for Mimecast created. Programme moves from analysis to active remediation.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <span class="timeline-phase">2022&#8211;23</span>
+          </div>
+          <div class="timeline-body">
+            <p class="timeline-title">QA integration</p>
+            <p class="timeline-desc">Multiple QA suppliers evaluated. Finding partners who delivered genuine, measurable improvement rather than reports without behaviour change took considerable time. Eventually the right partners were identified and accessibility testing was embedded as a standard gate in product development and QA.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <span class="timeline-phase">2023&#8211;24</span>
+          </div>
+          <div class="timeline-body">
+            <p class="timeline-title">Design system as multiplier</p>
+            <p class="timeline-desc">Accessibility built into the foundations of Mimecast Elements through close collaboration between Andrew Doyle, Jackie Simon, Cris Evans, and the platform engineering team. Every product adopting Elements inherited accessible components by default. Entire categories of accessibility failure ended through pattern adoption rather than individual remediation.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-marker">
+            <span class="timeline-phase">2024&#8211;25</span>
+          </div>
+          <div class="timeline-body">
+            <p class="timeline-title">Cultural shift and competitive compliance</p>
+            <p class="timeline-desc">Teams actively competing with each other to demonstrate compliance. Marketing and PR engaged in demonstrating Mimecast's seriousness about accessibility standards externally. The programme had moved from something done to teams to something teams were proud of.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3>Cross-functional ownership</h3>
+      <p>Accessibility at Mimecast was never owned by one team. Creating and maintaining the standard required active involvement from QA, technical programme managers, designers, engineers, marketing, and PR. That breadth was intentional. A standard that lives in one function is fragile. A standard that multiple functions have invested in is far harder to deprioritise when delivery pressure increases.</p>
+
+      <p style="margin-top:1.5rem; font-size:0.8rem; color:var(--muted);">Key partners and sponsors:</p>
+      <div class="partners">
+        <span class="partner-tag">Jonathan Hassell — Hassell Inclusive</span>
+        <span class="partner-tag">Harvey Seale — SVP Governance and DPO</span>
+        <span class="partner-tag">Raeann Cando — Senior Director, Governance and Certification</span>
+        <span class="partner-tag">Andrew Doyle — Accessibility Lead</span>
+        <span class="partner-tag">Sonya Aronin — Platform Engineering Director</span>
+        <span class="partner-tag">Matt Greeny — VP Product Platform</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule">
+
+  <div class="section">
+    <div class="section-label">
+      <span class="section-number">04</span>
+      <span class="section-title">What changed</span>
+    </div>
+    <div class="section-body">
+
+      <div class="outcome-block">
+        <span class="outcome-label">Programme outcomes</span>
+        <p>Every product sold to customers had a WCAG audit and a credible VPAT by the time Graham left, up from zero. Three sites were approaching full AA compliance, with others improving continuously. The design system had ended entire categories of problem through pattern adoption. Teams that had never considered accessibility were competing to demonstrate compliance. Marketing and PR were actively using Mimecast's accessibility progress as an external signal of quality.</p>
+        <p style="margin-top:1rem;">The deeper outcome was cultural. The organisation became more human-centred. Teams that had been focused entirely on features started to ask questions about the people using those features. Accessibility had worked as Graham intended: as a rules-based entry point that made user experience thinking accessible to people who had never engaged with it before.</p>
+      </div>
+
+      <h3>Commercial and regulatory validation</h3>
+      <p>When the EU European Accessibility Act came into force in June 2025, field CTOs contacted Graham directly, worried about whether Mimecast could demonstrate compliance to customers. The programme that had been built over four years gave a straightforward answer: the audits existed, the framework was in place, the design system was carrying accessible components across the portfolio, and progress was documented and measurable. Mimecast was ahead of competitors who were only beginning to engage with the requirements.</p>
+      <p>Three categories of client validated the commercial importance of the work:</p>
+
+      <div class="client-grid">
+        <div class="client-item">
+          <span class="client-label">Contracted commitment</span>
+          <p class="client-desc">One client wrote full accessibility into their contract for the products they purchased. The product leader was formally committed to achieving that standard. The programme gave the organisation the confidence to accept that commitment.</p>
+        </div>
+        <div class="client-item">
+          <span class="client-label">US federal procurement</span>
+          <p class="client-desc">Educational institutions and universities needing to demonstrate use of accessible products to access US federal funding. The VPAT coverage the programme delivered made those conversations straightforward rather than risky.</p>
+        </div>
+        <div class="client-item">
+          <span class="client-label">Enterprise standards</span>
+          <p class="client-desc">Large management consultancies that took standards very seriously. The documented programme and clear trajectory gave Mimecast the credibility to convince those clients that the business was genuinely committed, not just starting to think about it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-footer">
+    <p class="footer-note">
+      Delivered in partnership with <strong>Jonathan Hassell</strong>, Hassell Inclusive, sponsored by <strong>Harvey Seale</strong> SVP Governance and DPO, and led from the governance side by <strong>Raeann Cando</strong>, Senior Director of Governance and Certification. Programme ran 2021&#8211;2025.
+    </p>
+    <a href="mimecast-elements.html" class="next-case">
+      <span class="next-label">Next case study</span>
+      <span class="next-title">Mimecast Elements &#8594;</span>
+    </a>
+  </div>
+
+</main>
+</body>
+</html>

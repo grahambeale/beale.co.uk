@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mimecast Elements — Graham Beale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #E8E4DC;
+    --cream: #E8E4DC;
+    --warm-mid: #3A3633;
+    --indigo: #2d3a7a;
+    --indigo-light: #6272c8;
+    --rule: #3A3633;
+    --muted: #888480;
+    --white: #ffffff;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 18px; scroll-behavior: smooth; }
+  body { background: #252220; color: var(--ink); font-family: 'Inter', sans-serif; font-weight: 400; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  .masthead { background: #252220; padding: 2rem 0 0; }
+  .masthead-inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
+  .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--muted); text-decoration: none; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500; transition: color 0.2s; margin-bottom: 3rem; }
+  .back-link:hover { color: var(--indigo-light); }
+  .back-link::before { content: '&#8592;'; font-size: 0.9rem; }
+  .eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+  .tag { background: var(--indigo); color: var(--white); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.75rem; }
+  .year { color: var(--muted); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .hero-title { font-family: 'Inter', sans-serif; font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 700; line-height: 1.08; color: var(--cream); letter-spacing: -0.02em; margin-bottom: 0.5rem; animation: fadeUp 0.6s ease both; }
+  .hero-title em { font-style: italic; color: var(--indigo-light); }
+  .hero-subtitle { font-family: 'Inter', sans-serif; font-size: clamp(1rem, 2.5vw, 1.3rem); font-weight: 400; font-style: italic; color: var(--muted); margin-bottom: 3rem; animation: fadeUp 0.6s 0.1s ease both; }
+  .meta-strip { border-top: 1px solid #3A3633; display: grid; grid-template-columns: repeat(3, 1fr); padding: 1.5rem 0; gap: 1rem; animation: fadeUp 0.6s 0.2s ease both; }
+  .meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
+  .meta-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .meta-value { font-size: 0.9rem; color: var(--cream); font-weight: 400; }
+  .stat-bar { background: var(--indigo); padding: 2rem 0; }
+  .stat-bar-inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; text-align: center; }
+  .stat-item { display: flex; flex-direction: column; gap: 0.2rem; }
+  .stat-number { font-family: 'Inter', sans-serif; font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; color: var(--white); line-height: 1; }
+  .stat-label { font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.7); font-weight: 500; }
+  .content { max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+  .section { margin-bottom: 4rem; display: grid; grid-template-columns: 200px 1fr; gap: 3rem; align-items: start; }
+  .section-label { padding-top: 0.2rem; position: sticky; top: 2rem; }
+  .section-number { font-family: 'Inter', sans-serif; font-size: 3rem; font-weight: 700; color: #4a4440; line-height: 1; display: block; }
+  .section-title { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--indigo); margin-top: 0.5rem; display: block; }
+  .section-body h3 { font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 700; line-height: 1.3; color: #E8E4DC; margin-bottom: 1rem; margin-top: 2rem; }
+  .section-body h3:first-child { margin-top: 0; }
+  .section-body p { margin-bottom: 1.25rem; color: #C8C4BC; font-size: 1rem; }
+  .section-body p:last-child { margin-bottom: 0; }
+  .pull-quote { border-left: 3px solid var(--indigo); margin: 2rem 0; padding: 1rem 0 1rem 1.5rem; }
+  .pull-quote p { font-family: 'Inter', sans-serif; font-size: 1.15rem; font-style: italic; font-weight: 400; color: #E8E4DC !important; line-height: 1.5; margin-bottom: 0.5rem !important; }
+  .pull-quote cite { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-style: normal; font-weight: 500; }
+  .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 2rem 0; }
+  .before-col, .after-col { background: #2e2a26; padding: 1.5rem; }
+  .before-col { background: #252220; }
+  .col-label { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1rem; display: block; }
+  .before-col .col-label { color: var(--muted); }
+  .after-col .col-label { color: var(--indigo); }
+  .col-item { display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.6rem; font-size: 0.85rem; color: #C8C4BC; line-height: 1.4; }
+  .col-item::before { content: '-'; color: var(--muted); flex-shrink: 0; margin-top: 0.05rem; }
+  .after-col .col-item::before { content: '+'; color: var(--indigo); font-weight: 500; }
+  .adoption-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 2rem 0; }
+  .adoption-item { background: #2e2a26; padding: 1.25rem 1.5rem; }
+  .adoption-product { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--indigo); margin-bottom: 0.3rem; display: block; }
+  .adoption-note { font-size: 0.85rem; color: var(--muted); line-height: 1.4; margin: 0 !important; }
+  hr.section-rule { border: none; border-top: 1px solid var(--rule); margin: 4rem 0; }
+  .outcome-block { background: #2e2a26; padding: 2.5rem; margin: 2rem 0; }
+  .outcome-block p { color: var(--cream) !important; font-size: 1rem; }
+  .outcome-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--indigo-light); font-weight: 500; margin-bottom: 1rem; display: block; }
+  .tooling-strip { display: flex; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin: 2rem 0; }
+  .tool-item { background: #2e2a26; padding: 1rem 1.5rem; flex: 1; display: flex; flex-direction: column; gap: 0.2rem; }
+  .tool-name { font-weight: 500; font-size: 0.9rem; color: #E8E4DC; }
+  .tool-owner { font-size: 0.75rem; color: var(--muted); }
+  .partners { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .partner-tag { background: #3A3633; color: #E8E4DC; font-size: 0.75rem; font-weight: 500; padding: 0.3rem 0.75rem; letter-spacing: 0.04em; }
+  .case-footer { border-top: 1px solid var(--rule); padding-top: 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-note { font-size: 0.8rem; color: var(--muted); max-width: 480px; line-height: 1.5; }
+  .footer-note strong { color: #E8E4DC; font-weight: 500; }
+  .next-case { text-decoration: none; display: flex; flex-direction: column; align-items: flex-end; gap: 0.2rem; }
+  .next-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+  .next-title { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 700; color: #E8E4DC; transition: color 0.2s; }
+  .next-case:hover .next-title { color: var(--indigo); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 640px) {
+    .section { grid-template-columns: 1fr; gap: 1rem; }
+    .section-label { position: static; display: flex; align-items: baseline; gap: 0.75rem; }
+    .section-number { font-size: 1.8rem; }
+    .meta-strip { grid-template-columns: 1fr 1fr; }
+    .stat-bar-inner { grid-template-columns: 1fr 1fr; text-align: left; }
+    .before-after { grid-template-columns: 1fr; }
+    .adoption-grid { grid-template-columns: 1fr; }
+    .tooling-strip { flex-direction: column; }
+    .case-footer { flex-direction: column; align-items: flex-start; }
+    .next-case { align-items: flex-start; }
+  }
+</style>
+<script>
+  if (sessionStorage.getItem("gb_portfolio_auth") !== "true") {
+    window.location.href = "enter.html";
+  }
+</script>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <a href="/" class="back-link">All case studies</a>
+    <div class="eyebrow">
+      <span class="tag">Design Systems · Engineering Partnership</span>
+      <span class="year">Mimecast · 2022&#8211;2026+</span>
+    </div>
+    <h1 class="hero-title">Mimecast Elements:<br><em>one design language<br>across many platforms</em></h1>
+    <p class="hero-subtitle">Building a shared design system across multiple product areas and technical platforms</p>
+    <div class="meta-strip">
+      <div class="meta-item">
+        <span class="meta-label">Role</span>
+        <span class="meta-value">User Experience Director</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Timeline</span>
+        <span class="meta-value">Late 2022&#8211;2026+</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Scope</span>
+        <span class="meta-value">Design system · Engineering alignment · Portfolio adoption</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="stat-bar">
+  <div class="stat-bar-inner">
+    <div class="stat-item">
+      <span class="stat-number">4+</span>
+      <span class="stat-label">Historic design system versions at outset</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">1</span>
+      <span class="stat-label">Unified design system adopted across the business</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">4</span>
+      <span class="stat-label">Products working towards or at full adoption</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">&#8593;</span>
+      <span class="stat-label">Significant positive UX shift in Clozd and Pendo</span>
+    </div>
+  </div>
+</div>
+
+<main class="content">
+
+  <div class="section">
+    <div class="section-label">
+      <span class="section-number">01</span>
+      <span class="section-title">The situation</span>
+    </div>
+    <div class="section-body">
+      <p>Mimecast had grown through acquisition and rapid product expansion across multiple technical platforms. The result was four main historic versions of design systems, and within those, products and features that did not consistently adhere to any of them. Many projects that had started as features within products had grown into products in their own right, each with their own inherited UI history and engineering choices.</p>
+      <p>The core problem was not simply that shared components did not exist. It was that multiple versions of the same components existed across different areas of the product suite, and nobody was certain which version was the right one to adopt. This was compounded by a genuine technical split: some teams built on Angular, others on React, and there was active debate across the organisation about which framework the business should align on. Teams had strong preferences, and those preferences were not easily reconciled.</p>
+      <p>There had been attempts to address this before. Previous efforts to establish a new standard had been made under each of the four main design systems, and all had ultimately failed. The consistent reason was team fragmentation: isolated engineering teams, under delivery pressure, with no shared ownership model and no mechanism that made using a common standard easier than building something independently.</p>
+
+      <div class="pull-quote">
+        <p>The director of architecture put it clearly: he did not care which technical framework teams used, as long as products looked visually consistent for users and customers. Visual similarity was the goal. How engineering teams got there was their choice.</p>
+      </div>
+
+      <div class="before-after">
+        <div class="before-col">
+          <span class="col-label">The problem</span>
+          <div class="col-item">Four main historic design system versions, plus many more variations</div>
+          <div class="col-item">Multiple versions of the same components, no clear standard to adopt</div>
+          <div class="col-item">Angular and React teams working in parallel, no agreed alignment</div>
+          <div class="col-item">Previous attempts to standardise had all failed due to team fragmentation</div>
+          <div class="col-item">UI maintenance burden sitting inside feature delivery teams</div>
+          <div class="col-item">No scalable mechanism for rolling out accessibility standards</div>
+        </div>
+        <div class="after-col">
+          <span class="col-label">The outcome</span>
+          <div class="col-item">Mimecast Elements as the single adopted design system across the business</div>
+          <div class="col-item">Clear governance model for new components and pattern requests</div>
+          <div class="col-item">Visual consistency achieved regardless of underlying technical framework</div>
+          <div class="col-item">Platform team as partners to feature teams, not a separate silo</div>
+          <div class="col-item">UI maintenance and security updates centralised through the platform</div>
+          <div class="col-item">Accessibility built into components by default, maintained by Andrew Doyle</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule">
+
+  <div class="section">
+    <div class="section-label">
+      <span class="section-number">02</span>
+      <span class="section-title">The challenge</span>
+    </div>
+    <div class="section-body">
+      <p>The platform team was tightly focused on centralised product features and measured on delivery. A proposal to take on ownership of a shared UI system was, from their perspective, additional work outside their remit. Making the case required reframing the proposition in terms that mattered to them: fewer one-off component requests, reduced duplication across feature teams, and a shared standard that engineering could actually maintain rather than inherit and abandon.</p>
+      <p>This was not a quick conversation. Over many months Graham communicated the value of a common component library, making the case that the platform team could own it in partnership with the design team in a way that would speed up development and provide a common language for collaboration and accessibility standards. A US and UK workshop eventually brought the right people into the same room and secured agreement from the VP of Product for Platform.</p>
+      <p>From that point the engineering team moved quickly, selecting Storybook as their tool of choice. The design team worked in Figma and used ZeroHeight to document and catalogue the design system. The pairing between Storybook and ZeroHeight was particularly important: keeping both in close alignment meant that what was documented matched what was built, and both designers and engineers had a reliable source of truth.</p>
+
+      <div class="tooling-strip">
+        <div class="tool-item">
+          <span class="tool-name">Figma</span>
+          <span class="tool-owner">Design: component design, iteration, and handoff</span>
+        </div>
+        <div class="tool-item">
+          <span class="tool-name">Storybook</span>
+          <span class="tool-owner">Engineering: component library and development environment</span>
+        </div>
+        <div class="tool-item">
+          <span class="tool-name">ZeroHeight</span>
+          <span class="tool-owner">Design system catalogue: documentation, patterns, and usage guidelines</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule">
+
+  <div class="section">
+    <div class="section-label">
+      <span class="section-number">03</span>
+      <span class="section-title">How it worked</span>
+    </div>
+    <div class="section-body">
+      <h3>Design leadership and governance</h3>
+      <p>Jackie Simon led the design system work day to day as Design Lead for Mimecast Elements, with the full design team involved in reviewing, agreeing, and supporting changes. The principal burden of creating new UI patterns and components fell on designers, but components could equally be developed by a feature engineering team rather than the platform team, provided the platform team were involved in coordinating quality and consistency of the result.</p>
+      <p>Cori Ameh held the Product Owner role for the system. It was Cori who prioritised the backlog of component requests, bug fixes, and accessibility updates, not the platform team. The platform engineering team worked those tickets as capacity allowed, typically finding time in gaps between scheduled delivery rather than maintaining a dedicated sprint. Juan Noguera and Zarina Osman contributed across the system's development as product designers.</p>
+
+      <h3>Engineering partnership</h3>
+      <p>Over time the platform engineering team became genuine partners to feature engineering teams, helping them integrate the design system into their workflow rather than simply providing a library for feature teams to use independently. This was a shift in relationship, not just in process. Cris Evans, as Senior Engineer, acted as an engineering consultant across both sides: advising wider engineering teams on how to use the platform library effectively, and working closely with designers to ensure the patterns being created were both scalable and reusable.</p>
+      <p>On accessibility, Andrew Doyle worked closely with designers and engineers throughout to ensure reusable components met accessibility standards. He maintained reports on each component and reviewed them continuously, making the design system the primary vehicle for rolling out accessibility improvements across the portfolio.</p>
+
+      <h3>Component governance in practice</h3>
+      <p>Engineering teams pushed back on requests for new components unless there was clear evidence they were needed: for usability, for accessibility, or because of a bug. This was not obstruction. It was a discipline that kept the system from sprawling and ensured new additions had a genuine rationale behind them. When designers felt an existing component was not appropriate for a particular interaction, there was a defined process for requesting amendments or new variants. Product management support strengthened any such request considerably.</p>
+
+      <div class="pull-quote">
+        <p>The design system became the path of least resistance for feature teams. Adopting Elements transferred UI maintenance and security update responsibility to the platform team, freeing engineering capacity for product work.</p>
+      </div>
+
+      <h3>Adoption across the portfolio</h3>
+      <p>Each product team determined its own adoption path, with the platform team working alongside them to support migration. The journey was not uniform, and several products were still working towards full adoption when Graham left.</p>
+
+      <div class="adoption-grid">
+        <div class="adoption-item">
+          <span class="adoption-product">Email Collaboration Security</span>
+          <p class="adoption-note">The first product to adopt Mimecast Elements. Well received by the sales team and Mimecast customers. Customer feedback via Clozd and Pendo showed a significant positive shift in UX perception. Field CTOs reported that customers noticed and valued the improvement.</p>
+        </div>
+        <div class="adoption-item">
+          <span class="adoption-product">DMARC Analyzer</span>
+          <p class="adoption-note">Built from the ground up with Mimecast Elements. The platform team consulted and coordinated closely on the pattern library as the product developed, making this one of the cleanest adoptions in the portfolio.</p>
+        </div>
+        <div class="adoption-item">
+          <span class="adoption-product">Email Archive</span>
+          <p class="adoption-note">Working towards full adoption. A longer-standing product with its own UI history, bringing it into alignment with Elements required careful migration rather than a clean-sheet build.</p>
+        </div>
+        <div class="adoption-item">
+          <span class="adoption-product">Email End User Portal</span>
+          <p class="adoption-note">Initially designed by a designer, then simplified by a product manager using the Mimecast Elements component documentation to create something straightforward enough to translate directly into engineering tickets. A clear example of how well-documented design systems make design accessible across functions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule">
+
+  <div class="section">
+    <div class="section-label">
+      <span class="section-number">04</span>
+      <span class="section-title">What changed</span>
+    </div>
+    <div class="section-body">
+
+      <div class="outcome-block">
+        <span class="outcome-label">Programme outcomes</span>
+        <p>Mimecast Elements became the singular design system for the business. Four products were working towards or at full adoption. Customer feedback through Clozd and Pendo demonstrated a significant positive shift in how users experienced the products that had adopted it, most clearly in Email Collaboration Security. Field CTOs speaking with customers reported consistent positive feedback about the improvements in user experience.</p>
+        <p style="margin-top:1rem;">The Email End User Portal showed something important about what good documentation makes possible: a product manager was able to use the component catalogue to simplify an existing design and produce something directly translatable into engineering tickets, without the designer having to remain in the loop at every step. The design system had become a communication tool as well as a technical one.</p>
+      </div>
+
+      <h3>The multiplier effect</h3>
+      <p>The connection between Elements and the accessibility programme was not incidental. Building accessibility into the design system's foundations meant that every product working towards adoption inherited accessible components as a starting point. Services that had not been updated for years found a practical path to accessible UI through Elements, as adoption of the system brought them into alignment with current standards as part of the development work they were already doing.</p>
+      <p>As engineers began using Cursor to generate code as part of the guild's AI adoption work, the design system's standards shaped the output of that generation. The system was not just a component library. It had become the shared language through which design, engineering, product, and accessibility spoke to each other.</p>
+
+      <p style="margin-top:1.5rem; font-size:0.8rem; color:var(--muted);">Core team:</p>
+      <div class="partners">
+        <span class="partner-tag">Jackie Simon — Design Lead</span>
+        <span class="partner-tag">Cori Ameh — Product Owner</span>
+        <span class="partner-tag">Matt Greeny — Product Platform</span>
+        <span class="partner-tag">Sonya Aronin — Engineering</span>
+        <span class="partner-tag">Cris Evans — Senior Engineer</span>
+        <span class="partner-tag">Andrew Doyle — Accessibility</span>
+        <span class="partner-tag">Juan Noguera — Product Design</span>
+        <span class="partner-tag">Zarina Osman — Product Design</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-footer">
+    <p class="footer-note">
+      <strong>Mimecast Elements</strong> was built in partnership with the Mimecast platform engineering team, 2022&#8211;2026+. Customer feedback outcomes drawn from <strong>Clozd</strong> and <strong>Pendo Feedback</strong> data. Field CTO feedback gathered through customer conversations.
+    </p>
+    <a href="mimecast-ai-guild.html" class="next-case">
+      <span class="next-label">Next case study</span>
+      <span class="next-title">Mimecast AI Guild &#8594;</span>
+    </a>
+  </div>
+
+</main>
+</body>
+</html>

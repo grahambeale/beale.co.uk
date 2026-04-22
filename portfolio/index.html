@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Graham Beale — Design and Product Leadership</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #E8E4DC;
+    --cream: #E8E4DC;
+    --warm-mid: #3A3633;
+    --rule: #3A3633;
+    --muted: #888480;
+    --white: #ffffff;
+    --amber: #E8960A;
+    --teal: #0d6e6e;
+    --indigo: #2d3a7a;
+    --rust: #9e3a1a;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 18px; scroll-behavior: smooth; }
+
+  body {
+    background: #252220;
+    color: var(--cream);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 4rem;
+    align-items: end;
+  }
+
+  .hero-left {}
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--muted);
+  }
+
+  .hero-name {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--cream);
+    margin-bottom: 2rem;
+  }
+
+  .hero-name em {
+    font-style: normal;
+    color: var(--cream);
+  }
+
+  .hero-description {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 520px;
+    font-weight: 400;
+  }
+
+  .hero-description strong {
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  .hero-right {
+    padding-bottom: 0.5rem;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .hero-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .tag-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .tag-dot.amber { background: var(--amber); }
+  .tag-dot.teal { background: var(--teal); }
+  .tag-dot.indigo { background: var(--indigo); }
+  .tag-dot.rust { background: var(--rust); }
+
+  .hero-contact {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #3A3633;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .hero-contact a {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+
+  .hero-contact a:hover { color: var(--cream); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    border-top: 1px solid #3A3633;
+  }
+
+  /* ── CASE STUDIES LABEL ── */
+  .section-intro {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 2rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .section-intro-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-intro-label::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--muted);
+  }
+
+  .section-intro-note {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ── CASE STUDY GRID ── */
+  .cases {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem 6rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: #3A3633;
+    border: 1px solid #3A3633;
+  }
+
+  /* ── CASE CARD ── */
+  .case-card {
+    background: #252220;
+    padding: 2.5rem;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    min-height: 380px;
+  }
+
+  .case-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--card-color);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .case-card:hover { background: #2e2a26; }
+  .case-card:hover::before { transform: scaleX(1); }
+
+  .case-card.amber { --card-color: var(--amber); }
+  .case-card.teal { --card-color: var(--teal); }
+  .case-card.indigo { --card-color: var(--indigo); }
+  .case-card.rust { --card-color: var(--rust); }
+
+  .card-number {
+    font-family: 'Inter', sans-serif;
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--card-color);
+    opacity: 0.15;
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    letter-spacing: -0.04em;
+    transition: opacity 0.3s;
+  }
+
+  .case-card:hover .card-number { opacity: 0.25; }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .card-tag {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--card-color);
+    color: var(--white);
+    padding: 0.25rem 0.6rem;
+  }
+
+  .card-year {
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  .card-org {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  .card-title {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--cream);
+    letter-spacing: -0.01em;
+    margin-bottom: 1.25rem;
+    flex: 1;
+  }
+
+  .card-description {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-weight: 400;
+  }
+
+  .card-themes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 2rem;
+  }
+
+  .card-theme {
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid #3A3633;
+    padding: 0.2rem 0.6rem;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .case-card:hover .card-theme {
+    border-color: #4a4440;
+    color: #9a8f80;
+  }
+
+  .card-cta {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--card-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: auto;
+    opacity: 0.7;
+    transition: opacity 0.2s, gap 0.2s;
+  }
+
+  .case-card:hover .card-cta {
+    opacity: 1;
+    gap: 0.75rem;
+  }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    border-top: 1px solid #3A3633;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--cream);
+  }
+
+  .footer-note {
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow { animation: fadeUp 0.5s ease both; }
+  .hero-name { animation: fadeUp 0.5s 0.1s ease both; }
+  .hero-description { animation: fadeUp 0.5s 0.2s ease both; }
+  .hero-right { animation: fadeUp 0.5s 0.25s ease both; }
+  .case-card:nth-child(1) { animation: fadeUp 0.5s 0.3s ease both; }
+  .case-card:nth-child(2) { animation: fadeUp 0.5s 0.4s ease both; }
+  .case-card:nth-child(3) { animation: fadeUp 0.5s 0.5s ease both; }
+  .case-card:nth-child(4) { animation: fadeUp 0.5s 0.6s ease both; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-right { border-top: 1px solid #3A3633; padding-top: 2rem; }
+    .cases { grid-template-columns: 1fr; }
+    .case-card { min-height: auto; }
+    .section-intro { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+  }
+</style>
+<script>
+  if (sessionStorage.getItem("gb_portfolio_auth") !== "true") {
+    window.location.href = "enter.html";
+  }
+</script>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Portfolio · Case Studies</p>
+    <h1 class="hero-name">Graham<br>Beale</h1>
+    <p class="hero-description">
+      <strong>Senior design and product leader</strong> with over twenty years of experience across cybersecurity, fintech, media, and marketplace platforms. He builds human-centred digital products and the conditions that make them possible: the teams, the standards, and the cross-functional trust that makes good work sustainable.
+    </p>
+    <p class="hero-description" style="margin-top:1rem;">
+      Currently available from July 2026. Open to director, head, and VP-level roles where design, product, and engineering work as genuine partners.
+    </p>
+  </div>
+  <div class="hero-right">
+    <div class="hero-tags">
+      <div class="hero-tag"><span class="tag-dot amber"></span>Research and strategic validation</div>
+      <div class="hero-tag"><span class="tag-dot teal"></span>Accessibility practice building</div>
+      <div class="hero-tag"><span class="tag-dot indigo"></span>Design systems at scale</div>
+      <div class="hero-tag"><span class="tag-dot rust"></span>Human-centred AI leadership</div>
+      <div class="hero-tag" style="margin-top:0.5rem;"><span class="tag-dot" style="background:var(--muted);"></span>Cross-functional team building</div>
+      <div class="hero-tag"><span class="tag-dot" style="background:var(--muted);"></span>ISO 30071-1:2019 · NIST · Empowered product model</div>
+      <div class="hero-tag"><span class="tag-dot" style="background:var(--muted);"></span>BBC · Yahoo · Yell · Nationwide · Mimecast</div>
+    </div>
+    <div class="hero-contact">
+      <a href="mailto:graham@beale.co.uk">graham@beale.co.uk</a>
+      <a href="https://linkedin.com/in/grahambeale" target="_blank">linkedin.com/in/grahambeale</a>
+      <a href="https://beale.co.uk" target="_blank">beale.co.uk</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SECTION INTRO -->
+<div class="section-intro">
+  <span class="section-intro-label">Selected case studies</span>
+  <span class="section-intro-note">Four leadership stories across strategy, standards, systems, and AI</span>
+</div>
+
+<!-- CASE STUDY GRID -->
+<div class="cases">
+
+  <!-- 1: Yell -->
+  <a href="yell-project-alpha.html" class="case-card amber">
+    <span class="card-number">01</span>
+    <div class="card-meta">
+      <span class="card-tag">Research and Strategy</span>
+      <span class="card-year">2017</span>
+    </div>
+    <p class="card-org">Yell</p>
+    <h2 class="card-title">Project Alpha: rebuilding a consumer proposition from the ground up</h2>
+    <p class="card-description">Consumer NPS at -1. Call volumes down 39% year on year. Google eroding the core business model. A six-week research programme led to a CEO-level decision to build an entirely new two-sided marketplace, against significant internal resistance.</p>
+    <div class="card-themes">
+      <span class="card-theme">Strategic research</span>
+      <span class="card-theme">Competitive analysis</span>
+      <span class="card-theme">Prototype validation</span>
+      <span class="card-theme">C-suite influence</span>
+    </div>
+    <span class="card-cta">Read case study &#8594;</span>
+  </a>
+
+  <!-- 2: Accessibility -->
+  <a href="mimecast-accessibility.html" class="case-card teal">
+    <span class="card-number">02</span>
+    <div class="card-meta">
+      <span class="card-tag">Accessibility · Practice Build</span>
+      <span class="card-year">2021&#8211;2025</span>
+    </div>
+    <p class="card-org">Mimecast</p>
+    <h2 class="card-title">Building accessibility from assumption to standard</h2>
+    <p class="card-description">Zero WCAG audits, zero VPATs, no AA compliance across any product. A four-year programme, anchored in ISO 30071-1:2019, embedded accessibility into QA, the design system, and the culture, until teams were competing to demonstrate compliance.</p>
+    <div class="card-themes">
+      <span class="card-theme">ISO 30071-1:2019</span>
+      <span class="card-theme">Practice building</span>
+      <span class="card-theme">Organisational influence</span>
+      <span class="card-theme">Regulatory positioning</span>
+    </div>
+    <span class="card-cta">Read case study &#8594;</span>
+  </a>
+
+  <!-- 3: Elements -->
+  <a href="mimecast-elements.html" class="case-card indigo">
+    <span class="card-number">03</span>
+    <div class="card-meta">
+      <span class="card-tag">Design Systems</span>
+      <span class="card-year">2022&#8211;2026+</span>
+    </div>
+    <p class="card-org">Mimecast</p>
+    <h2 class="card-title">Mimecast Elements: one design language across many platforms</h2>
+    <p class="card-description">Four historic design system versions across multiple technical platforms, none consistently adopted. A shared system built in partnership with the platform engineering team became the standard across the business, improving customer experience and freeing delivery capacity.</p>
+    <div class="card-themes">
+      <span class="card-theme">Design systems</span>
+      <span class="card-theme">Engineering partnership</span>
+      <span class="card-theme">Portfolio adoption</span>
+      <span class="card-theme">Accessibility at scale</span>
+    </div>
+    <span class="card-cta">Read case study &#8594;</span>
+  </a>
+
+  <!-- 4: AI Guild -->
+  <a href="mimecast-ai-guild.html" class="case-card rust">
+    <span class="card-number">04</span>
+    <div class="card-meta">
+      <span class="card-tag">Human-Centred AI</span>
+      <span class="card-year">2020&#8211;2025</span>
+    </div>
+    <p class="card-org">Mimecast</p>
+    <h2 class="card-title">From service team to AI-first guild</h2>
+    <p class="card-description">A design function that started as a peripheral service became a network of embedded squad leaders, connected by a cross-functional guild open to product managers, engineers, and customer-facing teams. The guild became the vehicle for AI adoption across the organisation.</p>
+    <div class="card-themes">
+      <span class="card-theme">Team model</span>
+      <span class="card-theme">AI adoption</span>
+      <span class="card-theme">Cross-functional practice</span>
+      <span class="card-theme">Human-centred AI</span>
+    </div>
+    <span class="card-cta">Read case study &#8594;</span>
+  </a>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <span class="footer-name">Graham Beale</span>
+  <span class="footer-note">Cheltenham, UK &nbsp;·&nbsp; EU and UK passport holder &nbsp;·&nbsp; Available from July 2026</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Alpha, Graham Beale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #E8E4DC;
+    --cream: #E8E4DC;
+    --warm-mid: #3A3633;
+    --amber: #E8960A;
+    --amber-light: #F0A828;
+    --rule: #3A3633;
+    --muted: #888480;
+    --white: #ffffff;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { font-size: 18px; scroll-behavior: smooth; }
+
+  body {
+    background: #252220;
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    background: #252220;
+    padding: 2rem 0 0;
+  }
+
+  .masthead-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.2s;
+    margin-bottom: 3rem;
+  }
+  .back-link:hover { color: var(--amber-light); }
+  .back-link::before { content: '←'; font-size: 0.9rem; }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tag {
+    background: var(--amber);
+    color: var(--white);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+  }
+
+  .year {
+    color: var(--muted);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.08;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--amber-light);
+  }
+
+  .hero-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 3rem;
+  }
+
+  .meta-strip {
+    border-top: 1px solid #3A3633;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1.5rem 0;
+    gap: 1rem;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .meta-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .meta-value {
+    font-size: 0.9rem;
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  /* ── STAT BAR ── */
+  .stat-bar {
+    background: var(--amber);
+    padding: 2rem 0;
+  }
+
+  .stat-bar-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .stat-item { display: flex; flex-direction: column; gap: 0.2rem; }
+
+  .stat-number {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.75);
+    font-weight: 500;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 4rem 2rem 6rem;
+  }
+
+  /* ── SECTION STRUCTURE ── */
+  .section {
+    margin-bottom: 4rem;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .section-label {
+    padding-top: 0.2rem;
+    position: sticky;
+    top: 2rem;
+  }
+
+  .section-number {
+    font-family: 'Inter', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #4a4440;
+    line-height: 1;
+    display: block;
+  }
+
+  .section-title {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-top: 0.5rem;
+    display: block;
+  }
+
+  .section-body {}
+
+  .section-body h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #E8E4DC;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+  }
+
+  .section-body h3:first-child { margin-top: 0; }
+
+  .section-body p {
+    margin-bottom: 1.25rem;
+    color: #C8C4BC;
+    font-size: 1rem;
+  }
+
+  .section-body p:last-child { margin-bottom: 0; }
+
+  /* ── PULL QUOTE ── */
+  .pull-quote {
+    border-left: 3px solid var(--amber);
+    margin: 2rem 0;
+    padding: 1rem 0 1rem 1.5rem;
+  }
+
+  .pull-quote p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    font-weight: 400;
+    color: #E8E4DC !important;
+    line-height: 1.5;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .pull-quote cite {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* ── EVIDENCE GRID ── */
+  .evidence-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 2rem 0;
+  }
+
+  .evidence-item {
+    background: #2e2a26;
+    padding: 1.5rem;
+  }
+
+  .evidence-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+
+  .evidence-title {
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .evidence-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin: 0 !important;
+  }
+
+  /* ── RULE ── */
+  hr.section-rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 4rem 0;
+  }
+
+  /* ── OUTCOME BLOCK ── */
+  .outcome-block {
+    background: #2e2a26;
+    padding: 2.5rem;
+    margin: 2rem 0;
+  }
+
+  .outcome-block p {
+    color: var(--cream) !important;
+    font-size: 1rem;
+  }
+
+  .outcome-block .outcome-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber-light);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  /* ── PARTNERS ── */
+  .partners {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .partner-tag {
+    background: #3A3633;
+    color: #E8E4DC;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.3rem 0.75rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── FOOTER ── */
+  .case-footer {
+    border-top: 1px solid var(--rule);
+    padding-top: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-corroboration {
+    font-size: 0.8rem;
+    color: var(--muted);
+    max-width: 480px;
+    line-height: 1.5;
+  }
+
+  .footer-corroboration strong {
+    color: #E8E4DC;
+    font-weight: 500;
+  }
+
+  .next-case {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.2rem;
+  }
+
+  .next-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .next-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #E8E4DC;
+    transition: color 0.2s;
+  }
+
+  .next-case:hover .next-title { color: var(--amber); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-title { animation: fadeUp 0.6s ease both; }
+  .hero-subtitle { animation: fadeUp 0.6s 0.1s ease both; }
+  .meta-strip { animation: fadeUp 0.6s 0.2s ease both; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .section {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .section-label {
+      position: static;
+      display: flex;
+      align-items: baseline;
+      gap: 0.75rem;
+    }
+    .section-number { font-size: 1.8rem; }
+    .meta-strip { grid-template-columns: 1fr 1fr; }
+    .stat-bar-inner { grid-template-columns: 1fr; text-align: left; }
+    .evidence-grid { grid-template-columns: 1fr; }
+    .case-footer { flex-direction: column; align-items: flex-start; }
+    .next-case { align-items: flex-start; }
+  }
+</style>
+<script>
+  if (sessionStorage.getItem("gb_portfolio_auth") !== "true") {
+    window.location.href = "enter.html";
+  }
+</script>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <a href="/" class="back-link">All case studies</a>
+
+    <div class="eyebrow">
+      <span class="tag">Research &amp; Strategy</span>
+      <span class="year">Yell · 2017</span>
+    </div>
+
+    <h1 class="hero-title">Project Alpha:<br><em>Rebuilding Yell's<br>consumer proposition</em></h1>
+    <p class="hero-subtitle">From directory to marketplace, a research-led strategic pivot</p>
+
+    <div class="meta-strip">
+      <div class="meta-item">
+        <span class="meta-label">Role</span>
+        <span class="meta-value">Head of UX Design</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Timeline</span>
+        <span class="meta-value">6 weeks research, CEO decision</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Scope</span>
+        <span class="meta-value">Research · Strategy · Prototype validation</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+  <div class="stat-bar-inner">
+    <div class="stat-item">
+      <span class="stat-number">−1</span>
+      <span class="stat-label">Consumer NPS at outset</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">47</span>
+      <span class="stat-label">Touchpoint NPS at launch</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-number">£200</span>
+      <span class="stat-label">Avg job value generated</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="content">
+
+  <!-- SECTION 1: SITUATION -->
+  <div class="section">
+    <div class="section-label">
+      <span class="section-number">01</span>
+      <span class="section-title">The situation</span>
+    </div>
+    <div class="section-body">
+      <p>Yell was losing ground on multiple fronts simultaneously. Consumer NPS on the core search product sat at -1, monitored continuously via Mouseflow. Call volumes were down 39% year on year. Click-throughs to business listings had fallen 26%. Google's algorithm changes were degrading organic search traffic that accounted for over 90% of useful yell.com usage.</p>
+      <p>At the same time, focused vertical competitors, Rated People, Checkatrade, MyBuilder, were taking direct aim at Yell's heartland trades categories, all running higher direct traffic rates than Yell itself. The business had responded by doubling down on its existing advertising model. That model was running out of road.</p>
+
+      <div class="pull-quote">
+        <p>"We must develop an entirely new consumer value proposition."</p>
+        <cite>Internal strategic assessment, Yell 2017</cite>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule">
+
+  <!-- SECTION 2: THE DECISION -->
+  <div class="section">
+    <div class="section-label">
+      <span class="section-number">02</span>
+      <span class="section-title">The decision</span>
+    </div>
+    <div class="section-body">
+      <p>The CTO had grown frustrated with the organisation's difficulty seeing beyond its current business model. After a conversation with him, Graham initiated a research and validation programme to determine whether a fundamentally different consumer proposition was viable. The question was not how to improve the existing product. It was whether a new one was needed entirely.</p>
+      <p>The proposed direction, a two-sided marketplace built on trust signals, rich messaging, and co-created quoting, sat well outside business as usual. It did not immediately resonate internally, and there was no early commitment. The advertising model was the organisation's revenue engine, and a marketplace proposition that bypassed it was not an easy sell.</p>
+      <p>The research would need to be rigorous enough to take a contrary recommendation to the CEO, CTO, and CPO and make it stick.</p>
+    </div>
+  </div>
+
+  <hr class="section-rule">
+
+  <!-- SECTION 3: THE APPROACH -->
+  <div class="section">
+    <div class="section-label">
+      <span class="section-number">03</span>
+      <span class="section-title">The approach</span>
+    </div>
+    <div class="section-body">
+      <p>Graham sourced, hired, and briefed Nomensa as the research partner for the programme, working closely with Hannah Tempest as lead consultant. Together they ran a six-week programme combining three evidence streams.</p>
+
+      <div class="evidence-grid">
+        <div class="evidence-item">
+          <span class="evidence-icon">🗺</span>
+          <span class="evidence-title">Competitive analysis</span>
+          <p class="evidence-desc">12 trade-focused vertical players mapped across proposition, traffic patterns, and user behaviour.</p>
+        </div>
+        <div class="evidence-item">
+          <span class="evidence-icon">📊</span>
+          <span class="evidence-title">NPS survey</span>
+          <p class="evidence-desc">May 2017 NPS survey data revealing user demographics, intent patterns, and satisfaction drivers.</p>
+        </div>
+        <div class="evidence-item">
+          <span class="evidence-icon">📱</span>
+          <span class="evidence-title">Prototype testing</span>
+          <p class="evidence-desc">12 participants across two user groups, consumers and tradespeople, tested against interactive Proto.io prototypes.</p>
+        </div>
+      </div>
+
+      <h3>What the evidence showed</h3>
+      <p>The competitive analysis confirmed that Rated People, Checkatrade, and MyBuilder were drawing direct traffic at rates Yell could not match. The existing search-and-list model had no structural advantage against them.</p>
+      <p>The NPS data revealed something more telling: 50% of consumers visiting yell.com already had someone in mind. They were not searching, they were looking up. The platform was not creating new relationships between consumers and tradespeople. It was facilitating lookups it could not own.</p>
+      <p>Prototype testing explored five themes: trust signals, chat-based co-creation of quotes, location and availability, filler jobs for tradespeople, and local recommendation networks. Both groups responded strongly to trust and messaging features. The co-created quote was the clearest moment of shared value, the point at which both sides got what they needed.</p>
+
+      <div class="pull-quote">
+        <p>"Saves you a lot of time versus Google, all that research, waiting for people to get back to you."</p>
+        <cite>Research participant, consumer group</cite>
+      </div>
+
+      <p>Sam Harman, Head of Engineering, was a close partner throughout. His involvement ensured the concept was grounded in what could actually be built, and he later identified Sendbird as the messaging infrastructure the platform would use. Nick Butt and David Hughes also supported the initiative as it moved toward a build decision.</p>
+
+      <p style="margin-top:1.5rem; font-size:0.8rem; color:var(--muted);">Partners and collaborators:</p>
+      <div class="partners">
+        <span class="partner-tag">Hannah Tempest, Nomensa</span>
+        <span class="partner-tag">Sam Harman, Engineering</span>
+        <span class="partner-tag">Nick Butt, Product</span>
+        <span class="partner-tag">David Hughes, Product</span>
+        <span class="partner-tag">Keith Merriman, Product Owner</span>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-rule">
+
+  <!-- SECTION 4: THE RECOMMENDATION -->
+  <div class="section">
+    <div class="section-label">
+      <span class="section-number">04</span>
+      <span class="section-title">The recommendation</span>
+    </div>
+    <div class="section-body">
+      <p>Graham presented the findings to the CEO, CTO, and CPO as a formal decision with three options: pursue Project Alpha, integrate elements into the existing product, or stop. The recommendation was to pursue. The business approved it.</p>
+      <p>The approval did not come quickly. The idea had taken time to gain traction in an organisation where this direction had not been the plan. The evidence made it harder to argue for the status quo, but it still required a decision to move against the grain of an existing, profitable model.</p>
+    </div>
+  </div>
+
+  <hr class="section-rule">
+
+  <!-- SECTION 5: WHAT HAPPENED -->
+  <div class="section">
+    <div class="section-label">
+      <span class="section-number">05</span>
+      <span class="section-title">What happened</span>
+    </div>
+    <div class="section-body">
+      <p>Graham left Yell before the build began. At least six months after his departure the engineering programme got underway, led by Sam Harman's team with Keith Merriman as Product Owner.</p>
+
+      <div class="outcome-block">
+        <span class="outcome-label">Platform outcomes</span>
+        <p>The platform went from beta to scale in nine months, built on Sendbird as the messaging layer. It generated thousands of consumer leads at an average job value of £200. Touchpoint NPS reached 47.</p>
+        <p style="margin-top:1rem;">A platform designed from the ground up to create relationships, not lookups, delivered the satisfaction score the original product never could.</p>
+      </div>
+
+      <p style="font-size:0.85rem; color:var(--muted); margin-top:1.5rem;">Outcome metrics corroborated by Keith Merriman, Product Owner on the delivery programme.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="case-footer">
+    <p class="footer-corroboration">
+      <strong>Project Alpha</strong> was a formal strategic initiative presented to Yell's CEO, CTO, and CPO in July 2017. Outcomes corroborated by <strong>Keith Merriman</strong>, Product Owner, and <strong>Sam Harman</strong>, Head of Engineering.
+    </p>
+    <a href="#" class="next-case">
+      <span class="next-label">Next case study</span>
+      <span class="next-title">Mimecast Elements →</span>
+    </a>
+  </div>
+
+</main>
+
+</body>
+</html>
