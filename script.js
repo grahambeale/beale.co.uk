@@ -1,7 +1,18 @@
-// Nav border on scroll
+// Nav border + name swap on scroll
 const nav = document.getElementById('nav');
+const navName = document.querySelector('.nav-name');
+let currentScrolled = false;
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 20);
+  const scrolled = window.scrollY > 60;
+  nav.classList.toggle('scrolled', scrolled);
+  if (scrolled !== currentScrolled) {
+    currentScrolled = scrolled;
+    navName.classList.add('swapping');
+    setTimeout(() => {
+      navName.textContent = scrolled ? 'Graham Beale' : 'beale.co.uk';
+      navName.classList.remove('swapping');
+    }, 150);
+  }
 }, { passive: true });
 
 // Active nav link

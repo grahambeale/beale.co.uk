@@ -70,6 +70,11 @@ body {
   text-decoration: none;
   letter-spacing: -0.01em;
   flex-shrink: 0;
+  transition: opacity 0.15s ease;
+}
+
+.nav-name.swapping {
+  opacity: 0;
 }
 
 .nav-links {
@@ -410,17 +415,17 @@ h2 {
   line-height: 1.65;
 }
 
-.case-studies-placeholder a {
+.case-studies-placeholder a:not(.btn) {
   color: var(--text);
   text-underline-offset: 4px;
   text-decoration-thickness: 1px;
 }
 
-.case-studies-placeholder a:hover {
+.case-studies-placeholder a:not(.btn):hover {
   text-decoration-thickness: 2px;
 }
 
-.case-studies-placeholder a:focus-visible {
+.case-studies-placeholder a:not(.btn):focus-visible {
   outline: 2px solid var(--text);
   outline-offset: 4px;
 }
