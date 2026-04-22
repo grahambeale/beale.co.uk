@@ -26,39 +26,21 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     min-height: 100vh;
     padding: 2rem;
   }
 
   .gate {
+    flex: 1;
     width: 100%;
     max-width: 440px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 0;
     animation: fadeUp 0.5s ease both;
-    padding-top: 5rem;
-  }
-
-  .gate-eyebrow {
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 500;
-    margin-bottom: 2.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .gate-eyebrow::before {
-    content: '';
-    display: block;
-    width: 1.5rem;
-    height: 1px;
-    background: var(--muted);
+    padding-top: 4rem;
+    padding-bottom: 2rem;
   }
 
   .gate-title {
@@ -143,23 +125,6 @@
 
   .gate-error.visible { display: block; }
 
-  .gate-footer {
-    margin-top: 3rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--rule);
-    font-size: 0.75rem;
-    color: var(--muted);
-    line-height: 1.5;
-  }
-
-  .gate-footer a {
-    color: var(--muted);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .gate-footer a:hover { color: var(--cream); }
-
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -183,7 +148,9 @@
     color: #E8E4DC;
     text-decoration: none;
     letter-spacing: -0.01em;
+    transition: opacity 0.15s ease;
   }
+  .cs-nav-site.swapping { opacity: 0; }
   .cs-nav-site:hover { color: #E8960A; }
   .cs-nav-back, .cs-nav-label {
     font-size: 0.75rem;
@@ -224,7 +191,6 @@
 </nav>
 
 <div class="gate">
-  <p class="gate-eyebrow">Graham Beale · Case Studies</p>
   <h1 class="gate-title">Case<br>Studies</h1>
   <p class="gate-subtitle">Password protected. If you have received this link as part of a job application, the password is included with your copy of the CV.</p>
 
@@ -246,11 +212,6 @@
     <p class="gate-error" id="errorMsg">Incorrect password. Please check your copy of the CV.</p>
   </div>
 
-  <div class="gate-footer">
-    <a href="mailto:graham@beale.co.uk">graham@beale.co.uk</a> &nbsp;&middot;&nbsp;
-    <a href="https://linkedin.com/in/grahambeale" target="_blank">LinkedIn</a> &nbsp;&middot;&nbsp;
-    Cheltenham, UK
-  </div>
 </div>
 
 <script>
@@ -283,6 +244,7 @@
     if (e.key === 'Enter') checkPassword();
   });
 </script>
+<script src="nav.js"></script>
 
 <footer class="cs-footer">
   <p>&copy; 2026 Graham Beale &nbsp;&middot;&nbsp; Vibe coded with Claude Code</p>
