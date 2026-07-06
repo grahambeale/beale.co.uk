@@ -288,6 +288,10 @@ h2 {
   line-height: 1.55;
 }
 
+.aside-block p + p {
+  margin-top: 0.5rem;
+}
+
 /* ─── Experience ─────────────────────────────────────────────────────────── */
 
 #experience {
@@ -397,6 +401,33 @@ h2 {
   font-size: 0.9375rem;
   line-height: 1.68;
   max-width: 62ch;
+}
+
+/* ─── Education ──────────────────────────────────────────────────────────── */
+
+#education {
+  border-top: 1px solid var(--border);
+}
+
+.edu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 62ch;
+}
+
+.edu-inst {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.25rem;
+}
+
+.edu-qual {
+  font-size: 0.9375rem;
+  line-height: 1.55;
 }
 
 /* ─── Case Studies ───────────────────────────────────────────────────────── */
