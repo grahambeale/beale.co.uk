@@ -430,6 +430,25 @@ h2 {
   line-height: 1.55;
 }
 
+/* ─── Civic Leadership ───────────────────────────────────────────────────── */
+
+#civic-leadership {
+  border-top: 1px solid var(--border);
+}
+
+.civic-body {
+  max-width: 62ch;
+}
+
+.civic-body p {
+  font-size: 1.0625rem;
+  line-height: 1.72;
+}
+
+.civic-body p + p {
+  margin-top: 1.25rem;
+}
+
 /* ─── Case Studies ───────────────────────────────────────────────────────── */
 
 #case-studies {
