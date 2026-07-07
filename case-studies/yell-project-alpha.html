@@ -282,6 +282,102 @@
     margin: 0 !important;
   }
 
+  /* ── PROTOTYPE GALLERY ── */
+  .prototype-flow {
+    margin: 2rem 0;
+  }
+
+  .shot {
+    border: 1px solid var(--rule);
+    background: #2e2a26;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .prototype-gallery .shot {
+    padding: 1.5rem;
+  }
+
+  .shot img {
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: zoom-in;
+    transition: opacity 0.15s ease;
+  }
+
+  .shot img:hover { opacity: 0.85; }
+
+  .prototype-flow figcaption {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-top: 0.75rem;
+  }
+
+  .prototype-gallery {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .prototype-gallery figure {
+    margin: 0;
+  }
+
+  .prototype-gallery figcaption {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--amber);
+    text-align: center;
+    margin-top: 0.6rem;
+  }
+
+  /* ── LIGHTBOX ── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(12, 11, 10, 0.92);
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    cursor: zoom-out;
+  }
+
+  .lightbox.active {
+    display: flex;
+  }
+
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .lightbox-close {
+    position: fixed;
+    top: 1.25rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    color: var(--cream);
+    font-size: 2.25rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .lightbox-close:hover { color: var(--amber); }
+
   /* ── RULE ── */
   hr.section-rule {
     border: none;
@@ -449,6 +545,10 @@
     .meta-strip { grid-template-columns: 1fr 1fr; }
     .stat-bar-inner { grid-template-columns: 1fr; text-align: left; }
     .evidence-grid { grid-template-columns: 1fr; }
+    .prototype-gallery { grid-template-columns: repeat(2, 1fr); }
+    .shot { padding: 1rem; }
+    .lightbox { padding: 2rem 1rem; }
+    .lightbox-close { top: 0.75rem; right: 1rem; }
     .case-footer { flex-direction: column; align-items: flex-start; }
     .next-case { align-items: flex-start; }
   }
@@ -588,6 +688,34 @@
       <p>The NPS data revealed something more telling: 50% of consumers visiting yell.com already had someone in mind. They were not searching, they were looking up. The platform was not creating new relationships between consumers and tradespeople. It was facilitating lookups it could not own.</p>
       <p>Prototype testing explored five themes: trust signals, chat-based co-creation of quotes, location and availability, filler jobs for tradespeople, and local recommendation networks. Both groups responded strongly to trust and messaging features. The co-created quote was the clearest moment of shared value, the point at which both sides got what they needed.</p>
 
+      <figure class="prototype-flow">
+        <div class="shot"><img src="images/yell-concept-flow.png" alt="Consumer job-posting flow prototype: describing the job, setting a location, and choosing a service category" loading="lazy"></div>
+        <figcaption>The consumer job-posting flow tested with 12 participants via Proto.io. Green checks and red crosses mark the screens that landed and the ones that didn&rsquo;t. Click any image to enlarge.</figcaption>
+      </figure>
+
+      <div class="prototype-gallery">
+        <figure>
+          <div class="shot"><img src="images/yell-concept-trust.png" alt="Trust points and verified reviews concept screen" loading="lazy"></div>
+          <figcaption>1. Trust</figcaption>
+        </figure>
+        <figure>
+          <div class="shot"><img src="images/yell-concept-chat.png" alt="Chat-based co-created quote concept screen" loading="lazy"></div>
+          <figcaption>2. Chat &amp; co-creation</figcaption>
+        </figure>
+        <figure>
+          <div class="shot"><img src="images/yell-concept-location.png" alt="Location and coverage radius concept screen" loading="lazy"></div>
+          <figcaption>3. Location</figcaption>
+        </figure>
+        <figure>
+          <div class="shot"><img src="images/yell-concept-filler.png" alt="Filler jobs map concept screen for tradespeople" loading="lazy"></div>
+          <figcaption>4. Filler jobs</figcaption>
+        </figure>
+        <figure>
+          <div class="shot"><img src="images/yell-concept-network.png" alt="Local recommendation network concept screen" loading="lazy"></div>
+          <figcaption>5. Local networks</figcaption>
+        </figure>
+      </div>
+
       <div class="pull-quote">
         <p>"Saves you a lot of time versus Google, all that research, waiting for people to get back to you."</p>
         <cite>Research participant, consumer group</cite>
@@ -657,6 +785,37 @@
 <footer class="cs-footer">
   <p>&copy; 2026 Graham Beale &nbsp;&middot;&nbsp; Vibe coded with Claude Code</p>
 </footer>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Close enlarged image">&times;</button>
+  <img src="" alt="">
+</div>
+
+<script>
+  (function () {
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImg = lightbox.querySelector('img');
+
+    document.querySelectorAll('.shot img').forEach(function (img) {
+      img.addEventListener('click', function () {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('active');
+      });
+    });
+
+    function closeLightbox() { lightbox.classList.remove('active'); }
+
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+    lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  }());
+</script>
+
 <script src="nav.js"></script>
 </body>
 </html>
