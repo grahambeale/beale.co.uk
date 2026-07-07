@@ -232,9 +232,13 @@ h2 {
   margin-bottom: 1.75rem;
 }
 
-.hero-rule {
-  border: none;
-  border-top: 2px solid var(--accent);
+.hero-fit {
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.55;
+  max-width: 44ch;
+  border-left: 2px solid var(--accent);
+  padding-left: 0.875rem;
   margin-bottom: 1.75rem;
 }
 
@@ -249,6 +253,23 @@ h2 {
 
 #about {
   border-top: 1px solid var(--border);
+}
+
+.proof-strip {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 0.5rem 1.5rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  padding-bottom: clamp(2rem, 4vw, 3rem);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.proof-strip strong {
+  color: var(--text);
+  font-weight: 700;
 }
 
 .about-grid {
@@ -296,6 +317,12 @@ h2 {
 
 #experience {
   border-top: 1px solid var(--border);
+}
+
+.employer-strip {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 
 .timeline {
