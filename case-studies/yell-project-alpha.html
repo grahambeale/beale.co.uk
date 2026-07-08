@@ -14,7 +14,7 @@
     --amber: #E8960A;
     --amber-light: #F0A828;
     --rule: #3A3633;
-    --muted: #888480;
+    --muted: #A19C96;
     --white: #ffffff;
   }
 
@@ -90,6 +90,14 @@
     font-weight: 400;
     font-style: italic;
     color: var(--muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-summary {
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--cream);
+    max-width: 56ch;
     margin-bottom: 3rem;
   }
 
@@ -531,6 +539,9 @@
 
   /* ── RESPONSIVE ── */
   @media (max-width: 640px) {
+    .hero-title {
+      font-size: clamp(1.9rem, 9vw, 2.4rem);
+    }
     .section {
       grid-template-columns: 1fr;
       gap: 1rem;
@@ -583,6 +594,7 @@
 
     <h1 class="hero-title">Project Alpha:<br><em>Rebuilding Yell's<br>consumer proposition</em></h1>
     <p class="hero-subtitle">From directory to marketplace, a research-led strategic pivot</p>
+    <p class="hero-summary">Led the research and validation that took Yell from a &minus;1 NPS directory to a two-sided marketplace reaching +47 &mdash; approved at CEO level against the grain of the existing revenue model.</p>
 
     <div class="meta-strip">
       <div class="meta-item">
@@ -736,27 +748,14 @@
 
   <hr class="section-rule">
 
-  <!-- SECTION 4: THE RECOMMENDATION -->
+  <!-- SECTION 4: DECISION AND OUTCOME -->
   <div class="section">
     <div class="section-label">
       <span class="section-number">04</span>
-      <span class="section-title">The recommendation</span>
+      <span class="section-title">Decision and outcome</span>
     </div>
     <div class="section-body">
-      <p>Graham presented the findings to the CEO, CTO, and CPO as a formal decision with three options: pursue Project Alpha, integrate elements into the existing product, or stop. The recommendation was to pursue. The business approved it.</p>
-      <p>The approval did not come quickly. The idea had taken time to gain traction in an organisation where this direction had not been the plan. The evidence made it harder to argue for the status quo, but it still required a decision to move against the grain of an existing, profitable model.</p>
-    </div>
-  </div>
-
-  <hr class="section-rule">
-
-  <!-- SECTION 5: WHAT HAPPENED -->
-  <div class="section">
-    <div class="section-label">
-      <span class="section-number">05</span>
-      <span class="section-title">What happened</span>
-    </div>
-    <div class="section-body">
+      <p>Graham presented the findings to the CEO, CTO, and CPO as a formal decision with three options: pursue Project Alpha, integrate elements into the existing product, or stop. The recommendation was to pursue. The business approved it, though not quickly &mdash; the idea had taken time to gain traction in an organisation where this direction had not been the plan, and it still required a decision to move against the grain of an existing, profitable model.</p>
       <p>Graham left Yell before the build began. At least six months after his departure the engineering programme got underway, led by Sam Harman's team with Keith Merriman as Product Owner.</p>
 
       <div class="outcome-block">
@@ -774,9 +773,9 @@
     <p class="footer-corroboration">
       <strong>Project Alpha</strong> was a formal strategic initiative presented to Yell's CEO, CTO, and CPO in July 2017. Outcomes corroborated by <strong>Keith Merriman</strong>, Product Owner, and <strong>Sam Harman</strong>, Head of Engineering.
     </p>
-    <a href="#" class="next-case">
+    <a href="mimecast-accessibility.html" class="next-case">
       <span class="next-label">Next case study</span>
-      <span class="next-title">Mimecast Elements →</span>
+      <span class="next-title">Building Accessibility →</span>
     </a>
   </div>
 

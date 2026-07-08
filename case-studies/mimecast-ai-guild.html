@@ -14,7 +14,7 @@
     --rust: #e07858;
     --rust-light: #f0a090;
     --rule: #3A3633;
-    --muted: #888480;
+    --muted: #A19C96;
     --white: #ffffff;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,7 +27,8 @@
   .year { color: var(--muted); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }
   .hero-title { font-family: 'Inter', sans-serif; font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 700; line-height: 1.08; color: var(--cream); letter-spacing: -0.02em; margin-bottom: 0.5rem; animation: fadeUp 0.6s ease both; }
   .hero-title em { font-style: italic; color: var(--rust-light); }
-  .hero-subtitle { font-family: 'Inter', sans-serif; font-size: clamp(1rem, 2.5vw, 1.3rem); font-weight: 400; font-style: italic; color: var(--muted); margin-bottom: 3rem; animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-subtitle { font-family: 'Inter', sans-serif; font-size: clamp(1rem, 2.5vw, 1.3rem); font-weight: 400; font-style: italic; color: var(--muted); margin-bottom: 0.75rem; animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-summary { font-size: 1.0625rem; line-height: 1.6; color: var(--cream); max-width: 56ch; margin-bottom: 3rem; }
   .meta-strip { border-top: 1px solid #3A3633; display: grid; grid-template-columns: repeat(3, 1fr); padding: 1.5rem 0; gap: 1rem; animation: fadeUp 0.6s 0.2s ease both; }
   .meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
   .meta-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
@@ -134,6 +135,7 @@
     margin: 0 auto;
   }
   @media (max-width: 640px) {
+    .hero-title { font-size: clamp(1.9rem, 9vw, 2.4rem); }
     .section { grid-template-columns: 1fr; gap: 1rem; }
     .section-label { position: static; display: flex; align-items: baseline; gap: 0.75rem; }
     .section-number { font-size: 1.8rem; }
@@ -175,6 +177,7 @@
     </div>
     <h1 class="hero-title">From service team<br>to <em>AI-first guild</em></h1>
     <p class="hero-subtitle">How a design function restructured itself to stay relevant in an AI-first organisation</p>
+    <p class="hero-summary">Restructured a centralised design team into embedded squad leaders connected by a cross-functional guild &mdash; the model that let design lead Mimecast's AI-first adoption rather than react to it.</p>
     <div class="meta-strip">
       <div class="meta-item">
         <span class="meta-label">Role</span>
