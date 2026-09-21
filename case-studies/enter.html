@@ -246,8 +246,10 @@
 
     if (input.value.toLowerCase().trim() === PASSWORD) {
       sessionStorage.setItem(SESSION_KEY, 'true');
+      if (window.plausible) plausible('Case Study Unlock');
       window.location.href = 'index.html';
     } else {
+      if (window.plausible) plausible('Case Study Unlock Failed');
       input.classList.add('error', 'shake');
       error.classList.add('visible');
       input.value = '';
