@@ -3,7 +3,7 @@
 :root {
   --bg:       #252220;
   --text:     #E8E4DC;
-  --muted:    #888480;
+  --muted:    #A19C96;
   --accent:   #E8960A;
   --border:   #3A3633;
   --max-w:    900px;
@@ -121,7 +121,7 @@ section {
 
 .section-label {
   display: block;
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -315,7 +315,7 @@ h2 {
 }
 
 .aside-block h3 {
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -465,7 +465,7 @@ h2 {
 }
 
 .edu-inst {
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -629,6 +629,10 @@ footer p {
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+
+  .nav-name { transition: none; }
+  .nav-name.swapping { opacity: 1; }
+  .btn { transition: none; }
 }
 
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
