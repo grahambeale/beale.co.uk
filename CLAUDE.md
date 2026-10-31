@@ -16,12 +16,11 @@ The audience is Director and Head of Design hiring panels at AI-forward product 
 2. **About** (`#about`): short first-person narrative, plus an aside (Currently, Location, Civic role, Recognition).
 3. **Education** (`#education`): qualifications and professional development.
 4. **Testimonials** (`#testimonials`): three named colleague quotes.
-5. **Civic Leadership** (`#civic-leadership`): the councillor role.
-6. **Experience** (`#experience`): employer logo strip and a dated timeline.
-7. **Case Studies** (`#case-studies`): a short intro and a link to the case study index.
-8. **Contact** (`#contact`): email and a booking link (Cal.com).
+5. **Experience** (`#experience`): employer logo strip and a dated timeline.
+6. **Case Studies** (`#case-studies`): a short intro and a link to the case study index.
+7. **Contact** (`#contact`): email and a booking link (Cal.com).
 
-**Navigation** (`#nav`): About, Experience, Case Studies, Contact. The name at top left swaps from `beale.co.uk` to `Graham Beale` after scrolling (see `script.js`). Education, Testimonials and Civic Leadership are reachable by scrolling but are not in the nav.
+**Navigation** (`#nav`): About, Experience, Case Studies, Contact. The name at top left swaps from `beale.co.uk` to `Graham Beale` after scrolling (see `script.js`). Education and Testimonials are reachable by scrolling but are not in the nav.
 
 **Case study pages** (`case-studies/`): `index.html` (the four-card index), `yell-project-alpha.html`, `mimecast-accessibility.html`, `mimecast-elements.html`, `mimecast-ai-guild.html`. They are public. There is no password gate. `enter.html` is only a redirect to `index.html` so old links keep working. Each case study carries its own inline stylesheet and a small `nav.js` for the name swap.
 
@@ -97,7 +96,7 @@ Non-negotiable. Graham built an ISO 30071-1:2019 accessibility programme at Mime
 
 **Links**
 - Descriptive link text. Never "click here".
-- The CV link states file type and size: `Download CV (PDF, 65KB)`. Update the size whenever the PDF changes.
+- The CV link states file type and size: `Download CV (PDF, 64KB)`. Update the size whenever the PDF changes.
 - Links that open a new tab use `target="_blank"` with `rel="noopener noreferrer"` and a visually hidden "(opens in new tab)".
 
 **Images**
@@ -136,7 +135,7 @@ These apply to every word on the site, without exception.
 - **British English.**
 - **No AI speak.** Do not use: leverage, robust, seamless, holistic, synergy, cutting-edge, streamlined, spearheaded, orchestrated, transformative, meticulous, fostered, thriving, pivotal, comprehensive (used vaguely), innovative (used vaguely), demonstrating, navigating, or any phrase a person would not say out loud. Avoid "genuine" and "serious about".
 - **No hedge adverbs.** Avoid: deeply, truly, highly, incredibly, extremely, very.
-- **Voice.** The home page About and Civic Leadership sections are in the first person. Case studies are in the third person ("Graham led...").
+- **Voice.** The home page About section is in the first person. Case studies are in the third person ("Graham led...").
 - **Facts must match the master CV.** Do not invent, round up or embellish. Use only numbers that already appear on the site or in the CV.
 - **Yell NPS.** Consumer NPS of -1 and touchpoint NPS of 47 are different measures. Never draw an arrow or a "from X to Y" between them.
 - **Courses and qualifications.** Never use the word "completed" about a course or qualification.
