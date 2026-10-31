@@ -4,271 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Graham Beale | Case Studies</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<meta http-equiv="refresh" content="0; url=index.html">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://beale.co.uk/case-studies/index.html">
 <style>
-  :root {
-    --ink: #E8E4DC;
-    --cream: #E8E4DC;
-    --muted: #A19C96;
-    --rule: #3A3633;
-    --amber: #E8960A;
-    --error: #f87171;
-  }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { height: 100%; }
   body {
-    background: #252220;
-    color: var(--cream);
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     min-height: 100vh;
-    padding: 2rem;
-  }
-
-  .gate {
-    flex: 1;
-    width: 100%;
-    max-width: 440px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 0;
-    padding-top: 4rem;
-    padding-bottom: 2rem;
-  }
-
-  .gate-title {
-    font-family: 'Inter', sans-serif;
-    font-size: clamp(2rem, 6vw, 3rem);
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    color: var(--cream);
-    margin-bottom: 0.5rem;
-  }
-
-  .gate-subtitle {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin-bottom: 0.75rem;
-    line-height: 1.5;
-  }
-
-  .gate-preview {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-bottom: 3rem;
-    line-height: 1.5;
-    opacity: 0.85;
-  }
-
-  .gate-form {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .gate-input-wrap {
-    position: relative;
-  }
-
-  .gate-input {
-    width: 100%;
-    background: #2e2a26;
-    border: 2px solid #4a4440;
-    color: var(--cream);
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    padding: 1.1rem 1.25rem;
-    outline: none;
-    letter-spacing: 0.06em;
-    -webkit-text-security: disc;
-    text-security: disc;
-  }
-
-  .gate-input::placeholder {
-    color: var(--muted);
-    letter-spacing: 0.04em;
-    -webkit-text-security: none;
-    text-security: none;
-  }
-
-  .gate-input:focus { border-color: var(--amber); border-width: 2px; }
-  .gate-input.error { border-color: var(--error); }
-
-  .gate-button {
-    background: var(--amber);
-    border: none;
-    color: #252220;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.875rem;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    padding: 1rem 1.25rem;
-    cursor: pointer;
-    text-align: left;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-  }
-
-  .gate-button:hover { opacity: 0.9; }
-
-  .gate-error {
-    font-size: 0.8rem;
-    color: var(--error);
-    display: none;
-    padding-top: 0.25rem;
-    letter-spacing: 0.02em;
-  }
-
-  .gate-error.visible { display: block; }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .cs-nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
+    padding: 2rem clamp(1.5rem, 6vmin, 5rem);
     background: #252220;
-    border-bottom: 1px solid #3A3633;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1rem clamp(1.5rem, 4vw, 3rem);
-    font-family: 'Inter', sans-serif;
-  }
-  .cs-nav-site {
-    font-size: 0.875rem;
-    font-weight: 700;
     color: #E8E4DC;
-    text-decoration: none;
-    letter-spacing: -0.01em;
-  }  .cs-nav-site:hover { color: #E8960A; }
-  .cs-nav-back, .cs-nav-label {
-    font-size: 0.75rem;
-    font-weight: 500;
-    color: #A19C96;
-    text-decoration: none;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
   }
-  .cs-nav-back:hover { color: #E8E4DC; }
-
-  .cs-footer {
-    border-top: 1px solid #3A3633;
-    padding: 1.5rem clamp(1.5rem, 4vw, 3rem);
-    margin-top: 4rem;
-  }
-  .cs-footer p {
-    font-size: 0.8125rem;
-    color: #A19C96;
-    font-family: 'Inter', sans-serif;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20%, 60% { transform: translateX(-6px); }
-    40%, 80% { transform: translateX(6px); }
-  }
-
-  /* Motion is opt-in: reduced-motion users get none. */
-  @media (prefers-reduced-motion: no-preference) {
-    .gate { animation: fadeUp 0.5s ease both; }
-    .gate-input { transition: border-color 0.2s; }
-    .gate-button { transition: opacity 0.2s; }
-    .cs-nav-site { transition: opacity 0.15s ease; }
-    .cs-nav-site.swapping { opacity: 0; }
-    .shake { animation: shake 0.4s ease; }
-  }
+  main { max-width: 40rem; }
+  h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+  p { font-size: 1.0625rem; color: #A19C96; }
+  a { color: #E8960A; text-underline-offset: 4px; }
+  a:hover { color: #F0A828; }
+  a:focus-visible { outline: 2px solid #E8E4DC; outline-offset: 4px; }
 </style>
-
-<!-- Privacy-friendly analytics by Plausible -->
-<script async src="https://plausible.io/js/pa-PdDsAMjdAVuoEFkxhhXwj.js"></script>
-<script>
-  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-  plausible.init()
-</script>
 </head>
 <body>
-
-<nav class="cs-nav">
-  <a href="https://beale.co.uk" class="cs-nav-site">beale.co.uk</a>
-</nav>
-
-<div class="gate">
-  <h1 class="gate-title">Case<br>Studies</h1>
-  <p class="gate-subtitle">Password protected. If you have received this link as part of a job application, the password is included with your copy of the CV.</p>
-  <p class="gate-preview">Four case studies: Yell research &amp; strategy, Mimecast accessibility, Mimecast Elements design system, and human-centred AI leadership.</p>
-
-  <div class="gate-form">
-    <div class="gate-input-wrap">
-      <input
-        type="password"
-        id="passwordInput"
-        class="gate-input"
-        placeholder="Enter password"
-        autocomplete="current-password"
-        autofocus
-      >
-    </div>
-    <button class="gate-button" onclick="checkPassword()">
-      <span>Enter case studies</span>
-      <span>&#8594;</span>
-    </button>
-    <p class="gate-error" id="errorMsg">Incorrect password. Please check your copy of the CV.</p>
-  </div>
-
-</div>
-
-<script>
-  const PASSWORD = 'believeinbetter';
-  const SESSION_KEY = 'gb_portfolio_auth';
-
-  // If already authenticated, go straight to portfolio
-  if (sessionStorage.getItem(SESSION_KEY) === 'true') {
-    window.location.href = 'index.html';
-  }
-
-  function checkPassword() {
-    const input = document.getElementById('passwordInput');
-    const error = document.getElementById('errorMsg');
-    const form = document.querySelector('.gate-form');
-
-    if (input.value.toLowerCase().trim() === PASSWORD) {
-      sessionStorage.setItem(SESSION_KEY, 'true');
-      if (window.plausible) plausible('Case Study Unlock');
-      window.location.href = 'index.html';
-    } else {
-      if (window.plausible) plausible('Case Study Unlock Failed');
-      input.classList.add('error', 'shake');
-      error.classList.add('visible');
-      input.value = '';
-      setTimeout(() => input.classList.remove('shake'), 400);
-      input.focus();
-    }
-  }
-
-  document.getElementById('passwordInput').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') checkPassword();
-  });
-</script>
-<script src="nav.js"></script>
-
-<footer class="cs-footer">
-  <p>&copy; 2026 Graham Beale &nbsp;&middot;&nbsp; Built with Claude Code</p>
-</footer>
-
+<main>
+  <h1>Case studies</h1>
+  <p>The case studies are open to everyone and have moved. <a href="index.html">Go to the case studies</a>.</p>
+</main>
 </body>
 </html>
