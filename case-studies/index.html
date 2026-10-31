@@ -158,7 +158,10 @@
   .case-card.indigo { --card-color: var(--indigo); }
   .case-card.rust { --card-color: var(--rust); }
 
-  .card-number {
+  /* Decorative numeral. Generated content, so it is not read out or treated as text. */
+  .case-card::after {
+    content: attr(data-number);
+    content: attr(data-number) / "";
     font-family: 'Inter', sans-serif;
     font-size: 5rem;
     font-weight: 700;
@@ -169,9 +172,10 @@
     top: 1.5rem;
     right: 2rem;
     letter-spacing: -0.04em;
+    pointer-events: none;
   }
 
-  .case-card:hover .card-number { opacity: 0.25; }
+  .case-card:hover::after { opacity: 0.25; }
 
   .card-meta {
     display: flex;
@@ -242,7 +246,7 @@
 
   .case-card:hover .card-theme {
     border-color: #4a4440;
-    color: #9a8f80;
+    color: #C8C4BC;
   }
 
   .card-cta {
@@ -255,11 +259,9 @@
     align-items: center;
     gap: 0.5rem;
     margin-top: auto;
-    opacity: 0.7;
   }
 
   .case-card:hover .card-cta {
-    opacity: 1;
     gap: 0.75rem;
   }
 
@@ -348,9 +350,9 @@
     html { scroll-behavior: smooth; }
     .case-card { transition: background 0.3s; }
     .case-card::before { transition: transform 0.4s ease; }
-    .card-number { transition: opacity 0.3s; }
+    .case-card::after { transition: opacity 0.3s; }
     .card-theme { transition: border-color 0.2s, color 0.2s; }
-    .card-cta { transition: opacity 0.2s, gap 0.2s; }
+    .card-cta { transition: gap 0.2s; }
     .cs-nav-site { transition: opacity 0.15s ease; }
     .cs-nav-site.swapping { opacity: 0; }
     .cs-note a { transition: color 0.2s; }
@@ -377,6 +379,7 @@
   <span class="cs-nav-label">Case Studies</span>
 </nav>
 
+<main>
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
@@ -404,8 +407,7 @@
 <div class="cases">
 
   <!-- 1: Yell -->
-  <a href="yell-project-alpha.html" class="case-card amber">
-    <span class="card-number">01</span>
+  <a href="yell-project-alpha.html" class="case-card amber" data-number="01">
     <div class="card-meta">
       <span class="card-tag">Research and Strategy</span>
       <span class="card-year">2017</span>
@@ -423,8 +425,7 @@
   </a>
 
   <!-- 2: Accessibility -->
-  <a href="mimecast-accessibility.html" class="case-card teal">
-    <span class="card-number">02</span>
+  <a href="mimecast-accessibility.html" class="case-card teal" data-number="02">
     <div class="card-meta">
       <span class="card-tag">Accessibility · Practice Build</span>
       <span class="card-year">2021&#8211;2025</span>
@@ -442,8 +443,7 @@
   </a>
 
   <!-- 3: Elements -->
-  <a href="mimecast-elements.html" class="case-card indigo">
-    <span class="card-number">03</span>
+  <a href="mimecast-elements.html" class="case-card indigo" data-number="03">
     <div class="card-meta">
       <span class="card-tag">Design Systems</span>
       <span class="card-year">2022&#8211;2026+</span>
@@ -461,8 +461,7 @@
   </a>
 
   <!-- 4: AI Guild -->
-  <a href="mimecast-ai-guild.html" class="case-card rust">
-    <span class="card-number">04</span>
+  <a href="mimecast-ai-guild.html" class="case-card rust" data-number="04">
     <div class="card-meta">
       <span class="card-tag">Human-Centred AI</span>
       <span class="card-year">2020&#8211;2025</span>
@@ -480,6 +479,7 @@
   </a>
 
 </div>
+</main>
 
 <!-- FOOTER -->
 <footer class="cs-footer">
