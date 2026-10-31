@@ -356,7 +356,7 @@ h2 {
   padding-left: var(--node-gap);
 }
 
-/* Vertical line — pinned to left:0 of the timeline, centred with translateX(-50%) */
+/* Vertical line: pinned to left:0 of the timeline, centred with translateX(-50%) */
 .timeline::before {
   content: '';
   position: absolute;
