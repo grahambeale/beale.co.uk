@@ -12,7 +12,7 @@ The audience is Director and Head of Design hiring panels at AI-forward product 
 
 **One landing page** (`index.html`) with a fixed navigation bar and these sections, in order:
 
-1. **Hero** (`#hero`): photo, name, positioning line, fit line (level and availability), four proof points, then Download CV, LinkedIn and Email.
+1. **Hero** (`#hero`): photo, name, positioning line, sub line, fit line (level and availability), four labelled proof points, then Download CV, LinkedIn and Email.
 2. **About** (`#about`): short first-person narrative, plus an aside (Currently, Right to work, Civic role, Recognition).
 3. **Education** (`#education`): qualifications and professional development.
 4. **Testimonials** (`#testimonials`): three named colleague quotes.
@@ -96,7 +96,7 @@ Non-negotiable. Graham built an ISO 30071-1:2019 accessibility programme at Mime
 
 **Links**
 - Descriptive link text. Never "click here".
-- The CV link states file type and size: `Download CV (PDF, 64KB)`. Update the size whenever the PDF changes.
+- The CV link states file type and size: `Download CV (PDF, 62KB)`. Update the size whenever the PDF changes.
 - Links that open a new tab use `target="_blank"` with `rel="noopener noreferrer"` and a visually hidden "(opens in new tab)".
 
 **Images**
@@ -121,7 +121,7 @@ Non-negotiable. Graham built an ISO 30071-1:2019 accessibility programme at Mime
 - **JavaScript:** keep it to what already exists (`script.js`, `nav.js`, Plausible, and the image lightbox on the Yell case study). Core content must work without it. Do not add dependencies.
 - **Analytics:** Plausible. Custom events currently sent: `CV Download`, `LinkedIn Click` (location `hero`), `Email Click` (location `hero`, `contact` or `case-studies-note`), `Case Studies Open` and `Schedule Click`. Retired when the password gate was removed: `Password Request Click`, `Case Study Unlock`, `Case Study Unlock Failed`. Do not rename live events.
 - **Cache busting:** `styles.css` is linked with a `?v=` query string. Increase it whenever the stylesheet changes.
-- **Meta:** `og:image` and `twitter:image` use `og-card.jpg` (1200x630) with width, height and alt text. Meta descriptions match the hero positioning line.
+- **Meta:** `og:image` and `twitter:image` use `og-card.jpg` (1200x630) with width, height and alt text. Meta descriptions match the hero positioning and sub lines.
 - **Structured data:** a JSON-LD `Person` block in the head of `index.html`.
 - **Performance:** no render-blocking third-party scripts other than the Google Fonts stylesheet. Keep images small.
 
@@ -147,5 +147,4 @@ These apply to every word on the site, without exception.
 
 ## Known follow-ups
 
-- `Graham-Beale-CV.pdf` still prints the old case study password in its contact line. Regenerate it, then update the file size shown in the Download CV link.
 - Case study pages still use some text below 13px and keep their own inline stylesheets.
