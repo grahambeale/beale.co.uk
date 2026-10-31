@@ -13,7 +13,7 @@ The audience is Director and Head of Design hiring panels at AI-forward product 
 **One landing page** (`index.html`) with a fixed navigation bar and these sections, in order:
 
 1. **Hero** (`#hero`): photo, name, positioning line, fit line (level and availability), four proof points, then Download CV, LinkedIn and Email.
-2. **About** (`#about`): short first-person narrative, plus an aside (Currently, Location, Civic role, Recognition).
+2. **About** (`#about`): short first-person narrative, plus an aside (Currently, Right to work, Civic role, Recognition).
 3. **Education** (`#education`): qualifications and professional development.
 4. **Testimonials** (`#testimonials`): three named colleague quotes.
 5. **Experience** (`#experience`): employer logo strip and a dated timeline.
