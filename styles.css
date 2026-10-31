@@ -195,15 +195,15 @@ h2 {
 /* ─── Hero ───────────────────────────────────────────────────────────────── */
 
 #hero {
-  padding-top: calc(var(--section-gap) + 3.5rem);
-  padding-bottom: var(--section-gap);
+  padding-top: 6.5rem;
+  padding-bottom: 3rem;
   min-height: 100svh;
   display: flex;
   align-items: center;
 }
 
 .hero-photo {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .hero-photo img {
@@ -228,18 +228,47 @@ h2 {
   font-size: 1.0625rem;
   color: var(--muted);
   line-height: 1.5;
-  max-width: 40ch;
-  margin-bottom: 1.75rem;
+  max-width: 58ch;
+  margin-bottom: 1.5rem;
 }
 
 .hero-fit {
-  font-size: 0.875rem;
-  color: var(--muted);
+  font-size: 1rem;
+  color: var(--text);
   line-height: 1.55;
-  max-width: 44ch;
+  max-width: 62ch;
   border-left: 2px solid var(--accent);
   padding-left: 0.875rem;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Scoped semantic exception to the four-colour palette: negative/positive
+   NPS values only. Both pass WCAG AA (>4.5:1) against --bg. Do not reuse
+   these two colours elsewhere without revisiting this decision. */
+.stat-negative,
+.stat-positive {
+  font-weight: 700;
+}
+
+.stat-negative { color: #F87171; }
+.stat-positive { color: #4ADE80; }
+
+.hero-proof {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.hero-proof strong {
+  color: var(--text);
+  font-weight: 700;
 }
 
 .hero-links {
@@ -253,42 +282,6 @@ h2 {
 
 #about {
   border-top: 1px solid var(--border);
-}
-
-/* Scoped semantic exception to the four-colour palette: negative/positive
-   NPS values only. Both pass WCAG AA (>4.5:1) against --bg. Do not reuse
-   these two colours elsewhere without revisiting this decision. */
-.stat-negative { color: #F87171; }
-.stat-positive { color: #4ADE80; }
-
-.proof-secondary {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  gap: 0.5rem;
-  margin-bottom: clamp(2rem, 4vw, 3rem);
-  padding-bottom: clamp(2rem, 4vw, 3rem);
-  border-bottom: 1px solid var(--border);
-  font-size: 1.25rem;
-  line-height: 1.5;
-  color: var(--muted);
-}
-
-.proof-secondary li {
-  position: relative;
-  padding-left: 1.25rem;
-}
-
-.proof-secondary li::before {
-  content: "\2022";
-  position: absolute;
-  left: 0;
-  color: var(--accent);
-}
-
-.proof-secondary strong {
-  color: var(--text);
-  font-weight: 700;
 }
 
 .about-grid {
@@ -637,6 +630,12 @@ footer p {
 
 /* ─── Responsive ─────────────────────────────────────────────────────────── */
 
+@media (max-width: 900px) {
+  .hero-proof {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 640px) {
   .nav-links {
     gap: 1rem;
@@ -660,5 +659,9 @@ footer p {
 @media (max-width: 480px) {
   .nav-links {
     display: none;
+  }
+
+  .hero-proof {
+    grid-template-columns: 1fr;
   }
 }
