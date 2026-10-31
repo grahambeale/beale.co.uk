@@ -643,6 +643,23 @@ footer p {
     height: 96px;
   }
 
+  /* Buttons above the proof row so the CV link sits above the fold on phones.
+     Visual order only: the proof row has no focusable items, so focus order is unchanged. */
+  #hero .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-links {
+    order: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-proof {
+    order: 2;
+    margin-bottom: 0;
+  }
+
   .about-grid {
     grid-template-columns: 1fr;
   }
