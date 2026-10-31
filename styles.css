@@ -208,8 +208,8 @@ h2 {
 
 .hero-photo img {
   display: block;
-  width: 72px;
-  height: 72px;
+  width: 120px;
+  height: 120px;
   object-fit: cover;
   object-position: center top;
   filter: grayscale(100%);
@@ -655,6 +655,11 @@ footer p {
 @media (max-width: 640px) {
   .nav-links {
     gap: 1rem;
+  }
+
+  .hero-photo img {
+    width: 96px;
+    height: 96px;
   }
 
   .about-grid {
