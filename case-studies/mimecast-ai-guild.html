@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,18 +18,18 @@
     --white: #ffffff;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { font-size: 18px; scroll-behavior: smooth; }
+  html { font-size: 18px;}
   body { background: #252220; color: var(--ink); font-family: 'Inter', sans-serif; font-weight: 400; line-height: 1.7; -webkit-font-smoothing: antialiased; }
   .masthead { background: #252220; padding: 2rem 0 0; padding-top: 5rem; }
   .masthead-inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; }
   .eyebrow { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
   .tag { background: var(--rust); color: #252220; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.75rem; }
   .year { color: var(--muted); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }
-  .hero-title { font-family: 'Inter', sans-serif; font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 700; line-height: 1.08; color: var(--cream); letter-spacing: -0.02em; margin-bottom: 0.5rem; animation: fadeUp 0.6s ease both; }
+  .hero-title { font-family: 'Inter', sans-serif; font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 700; line-height: 1.08; color: var(--cream); letter-spacing: -0.02em; margin-bottom: 0.5rem;}
   .hero-title em { font-style: italic; color: var(--rust-light); }
-  .hero-subtitle { font-family: 'Inter', sans-serif; font-size: clamp(1rem, 2.5vw, 1.3rem); font-weight: 400; font-style: italic; color: var(--muted); margin-bottom: 0.75rem; animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-subtitle { font-family: 'Inter', sans-serif; font-size: clamp(1rem, 2.5vw, 1.3rem); font-weight: 400; font-style: italic; color: var(--muted); margin-bottom: 0.75rem;}
   .hero-summary { font-size: 1.0625rem; line-height: 1.6; color: var(--cream); max-width: 56ch; margin-bottom: 3rem; }
-  .meta-strip { border-top: 1px solid #3A3633; display: grid; grid-template-columns: repeat(3, 1fr); padding: 1.5rem 0; gap: 1rem; animation: fadeUp 0.6s 0.2s ease both; }
+  .meta-strip { border-top: 1px solid #3A3633; display: grid; grid-template-columns: repeat(3, 1fr); padding: 1.5rem 0; gap: 1rem;}
   .meta-item { display: flex; flex-direction: column; gap: 0.25rem; }
   .meta-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
   .meta-value { font-size: 0.9rem; color: var(--cream); font-weight: 400; }
@@ -88,7 +88,7 @@
   .footer-note strong { color: #E8E4DC; font-weight: 500; }
   .prev-case { text-decoration: none; display: flex; flex-direction: column; align-items: flex-start; gap: 0.2rem; }
   .prev-label { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
-  .prev-title { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 700; color: #E8E4DC; transition: color 0.2s; }
+  .prev-title { font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 700; color: #E8E4DC;}
   .prev-case:hover .prev-title { color: var(--rust); }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   .cs-nav {
@@ -109,14 +109,11 @@
     color: #E8E4DC;
     text-decoration: none;
     letter-spacing: -0.01em;
-    transition: opacity 0.15s ease;
-  }
-  .cs-nav-site.swapping { opacity: 0; }
-  .cs-nav-site:hover { color: #E8960A; }
+  }  .cs-nav-site:hover { color: #E8960A; }
   .cs-nav-back, .cs-nav-label {
     font-size: 0.75rem;
     font-weight: 500;
-    color: #888480;
+    color: #A19C96;
     text-decoration: none;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -129,7 +126,7 @@
   }
   .cs-footer p {
     font-size: 0.8125rem;
-    color: #888480;
+    color: #A19C96;
     font-family: 'Inter', sans-serif;
     max-width: 1100px;
     margin: 0 auto;
@@ -147,6 +144,17 @@
     .tools-grid { grid-template-columns: 1fr; }
     .outcomes-grid { grid-template-columns: 1fr; }
     .case-footer { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* Motion is opt-in: reduced-motion users get none. */
+  @media (prefers-reduced-motion: no-preference) {
+    html { scroll-behavior: smooth; }
+    .hero-title { animation: fadeUp 0.6s ease both; }
+    .hero-subtitle { animation: fadeUp 0.6s 0.1s ease both; }
+    .meta-strip { animation: fadeUp 0.6s 0.2s ease both; }
+    .prev-title { transition: color 0.2s; }
+    .cs-nav-site { transition: opacity 0.15s ease; }
+    .cs-nav-site.swapping { opacity: 0; }
   }
 </style>
 <script>
@@ -394,7 +402,7 @@
 </main>
 
 <footer class="cs-footer">
-  <p>&copy; 2026 Graham Beale &nbsp;&middot;&nbsp; Vibe coded with Claude Code</p>
+  <p>&copy; 2026 Graham Beale &nbsp;&middot;&nbsp; Built with Claude Code</p>
 </footer>
 <script src="nav.js"></script>
 </body>
