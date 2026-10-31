@@ -419,6 +419,22 @@ h2 {
   gap: 0.5rem;
 }
 
+.timeline-company a {
+  color: var(--text);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+.timeline-company a:hover {
+  color: var(--accent);
+  text-decoration-thickness: 2px;
+}
+
+.timeline-company a:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 4px;
+}
+
 .company-logo {
   height: 16px;
   width: auto;
