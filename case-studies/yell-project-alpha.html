@@ -159,7 +159,7 @@
     font-size: 0.7rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: rgba(37,34,32,0.75);
+    color: #252220;
     font-weight: 500;
   }
 
@@ -185,13 +185,15 @@
     top: 2rem;
   }
 
-  .section-number {
+  .section-label::before {
     font-family: 'Inter', sans-serif;
     font-size: 3rem;
     font-weight: 700;
     color: #4a4440;
     line-height: 1;
     display: block;
+    content: attr(data-number);
+    content: attr(data-number) / "";
   }
 
   .section-title {
@@ -541,7 +543,7 @@
       align-items: baseline;
       gap: 0.75rem;
     }
-    .section-number { font-size: 1.8rem; }
+    .section-label::before { font-size: 1.8rem; }
     .meta-strip { grid-template-columns: 1fr 1fr; }
     .stat-bar-inner { grid-template-columns: 1fr; text-align: left; }
     .evidence-grid { grid-template-columns: 1fr; }
@@ -609,7 +611,7 @@
 </header>
 
 <!-- STAT BAR -->
-<div class="stat-bar">
+<section class="stat-bar" aria-label="Key figures">
   <div class="stat-bar-inner">
     <div class="stat-item">
       <span class="stat-number">−1</span>
@@ -624,16 +626,15 @@
       <span class="stat-label">Avg job value generated</span>
     </div>
   </div>
-</div>
+</section>
 
 <!-- MAIN CONTENT -->
 <main class="content">
 
   <!-- SECTION 1: SITUATION -->
   <div class="section">
-    <div class="section-label">
-      <span class="section-number">01</span>
-      <span class="section-title">The situation</span>
+    <div class="section-label" data-number="01">
+      <h2 class="section-title">The situation</h2>
     </div>
     <div class="section-body">
       <p>Yell was losing ground on multiple fronts simultaneously. Consumer NPS on the core search product sat at -1, monitored continuously via Mouseflow. Call volumes were down 39% year on year. Click-throughs to business listings had fallen 26%. Google's algorithm changes were degrading organic search traffic that accounted for over 90% of useful yell.com usage.</p>
@@ -650,9 +651,8 @@
 
   <!-- SECTION 2: THE DECISION -->
   <div class="section">
-    <div class="section-label">
-      <span class="section-number">02</span>
-      <span class="section-title">The decision</span>
+    <div class="section-label" data-number="02">
+      <h2 class="section-title">The decision</h2>
     </div>
     <div class="section-body">
       <p>The CTO had grown frustrated with the organisation's difficulty seeing beyond its current business model. After a conversation with him, Graham initiated a research and validation programme to determine whether a fundamentally different consumer proposition was viable. The question was not how to improve the existing product. It was whether a new one was needed entirely.</p>
@@ -665,9 +665,8 @@
 
   <!-- SECTION 3: THE APPROACH -->
   <div class="section">
-    <div class="section-label">
-      <span class="section-number">03</span>
-      <span class="section-title">The approach</span>
+    <div class="section-label" data-number="03">
+      <h2 class="section-title">The approach</h2>
     </div>
     <div class="section-body">
       <p>Graham sourced, hired, and briefed Nomensa as the research partner for the programme, working closely with Hannah Tempest as lead consultant. Together they ran a six-week programme combining three evidence streams.</p>
@@ -745,9 +744,8 @@
 
   <!-- SECTION 4: DECISION AND OUTCOME -->
   <div class="section">
-    <div class="section-label">
-      <span class="section-number">04</span>
-      <span class="section-title">Decision and outcome</span>
+    <div class="section-label" data-number="04">
+      <h2 class="section-title">Decision and outcome</h2>
     </div>
     <div class="section-body">
       <p>Graham presented the findings to the CEO, CTO, and CPO as a formal decision with three options: pursue Project Alpha, integrate elements into the existing product, or stop. The recommendation was to pursue. The business approved it, though not quickly: the idea had taken time to gain traction in an organisation where this direction had not been the plan, and it still required a decision to move against the grain of an existing, profitable model.</p>

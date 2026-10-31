@@ -37,11 +37,11 @@
   .stat-bar-inner { max-width: 860px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; text-align: center; }
   .stat-item { display: flex; flex-direction: column; gap: 0.2rem; }
   .stat-number { font-family: 'Inter', sans-serif; font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; color: #252220; line-height: 1; }
-  .stat-label { font-size: 0.63rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(37,34,32,0.75); font-weight: 500; }
+  .stat-label { font-size: 0.63rem; letter-spacing: 0.08em; text-transform: uppercase; color: #252220; font-weight: 500; }
   .content { max-width: 860px; margin: 0 auto; padding: 4rem 2rem 6rem; }
   .section { margin-bottom: 4rem; display: grid; grid-template-columns: 200px 1fr; gap: 3rem; align-items: start; }
   .section-label { padding-top: 0.2rem; position: sticky; top: 2rem; }
-  .section-number { font-family: 'Inter', sans-serif; font-size: 3rem; font-weight: 700; color: #4a4440; line-height: 1; display: block; }
+  .section-label::before { font-family: 'Inter', sans-serif; font-size: 3rem; font-weight: 700; color: #4a4440; line-height: 1; display: block; content: attr(data-number); content: attr(data-number) / ""; }
   .section-title { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--rust); margin-top: 0.5rem; display: block; }
   .section-body h3 { font-family: 'Inter', sans-serif; font-size: 1.4rem; font-weight: 700; line-height: 1.3; color: #E8E4DC; margin-bottom: 1rem; margin-top: 2rem; }
   .section-body h3:first-child { margin-top: 0; }
@@ -135,7 +135,7 @@
     .hero-title { font-size: clamp(1.9rem, 9vw, 2.4rem); }
     .section { grid-template-columns: 1fr; gap: 1rem; }
     .section-label { position: static; display: flex; align-items: baseline; gap: 0.75rem; }
-    .section-number { font-size: 1.8rem; }
+    .section-label::before { font-size: 1.8rem; }
     .meta-strip { grid-template-columns: 1fr 1fr; }
     .stat-bar-inner { grid-template-columns: 1fr 1fr; text-align: left; }
     .evolution { grid-template-columns: 1fr; }
@@ -197,7 +197,7 @@
   </div>
 </header>
 
-<div class="stat-bar">
+<section class="stat-bar" aria-label="Key figures">
   <div class="stat-bar-inner">
     <div class="stat-item">
       <span class="stat-number">5</span>
@@ -216,14 +216,13 @@
       <span class="stat-label">Guild membership across design, PM, engineering, and CX</span>
     </div>
   </div>
-</div>
+</section>
 
 <main class="content">
 
   <div class="section">
-    <div class="section-label">
-      <span class="section-number">01</span>
-      <span class="section-title">The journey</span>
+    <div class="section-label" data-number="01">
+      <h2 class="section-title">The journey</h2>
     </div>
     <div class="section-body">
       <p>When Graham joined Mimecast in 2020, design was a peripheral function. The organisation was engineering and product-led, delivery mattered more than design quality, and designers were frequently either left out of user experience decisions entirely or brought in for low-value work after the important calls had been made.</p>
@@ -249,9 +248,8 @@
   <hr class="section-rule">
 
   <div class="section">
-    <div class="section-label">
-      <span class="section-number">02</span>
-      <span class="section-title">The structural decision</span>
+    <div class="section-label" data-number="02">
+      <h2 class="section-title">The structural decision</h2>
     </div>
     <div class="section-body">
       <p>The decision to restructure was Graham's. His view, grounded in the empowered product model associated with Marty Cagan's work, has always been that good user experience only happens in cross-functional teams where designers, engineers, and product managers work as genuine partners. A centralised service model, however well managed, prevents that kind of collaboration from taking root.</p>
@@ -269,9 +267,8 @@
   <hr class="section-rule">
 
   <div class="section">
-    <div class="section-label">
-      <span class="section-number">03</span>
-      <span class="section-title">AI adoption</span>
+    <div class="section-label" data-number="03">
+      <h2 class="section-title">AI adoption</h2>
     </div>
     <div class="section-body">
       <h3>How it started</h3>
@@ -322,9 +319,8 @@
   <hr class="section-rule">
 
   <div class="section">
-    <div class="section-label">
-      <span class="section-number">04</span>
-      <span class="section-title">The thinking</span>
+    <div class="section-label" data-number="04">
+      <h2 class="section-title">The thinking</h2>
     </div>
     <div class="section-body">
 
@@ -342,9 +338,8 @@
   <hr class="section-rule">
 
   <div class="section">
-    <div class="section-label">
-      <span class="section-number">05</span>
-      <span class="section-title">What changed</span>
+    <div class="section-label" data-number="05">
+      <h2 class="section-title">What changed</h2>
     </div>
     <div class="section-body">
 
