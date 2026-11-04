@@ -131,7 +131,7 @@ Non-negotiable. Graham built an ISO 30071-1:2019 accessibility programme at Mime
 
 These apply to every word on the site, without exception.
 
-- **No em dashes.** Never use one, as a character or as an HTML entity, in copy, titles or meta tags. Use a colon, a comma, a full stop, a pipe or a rewrite. Date ranges use "to" (for example "Oct 2020 to Mar 2026").
+- **No em dashes.** Never use one, as a character or as an HTML entity, in copy, titles or meta tags. Use a colon, a comma, a full stop, a pipe or a rewrite. Date ranges use "to" (for example "Sep 2020 to Mar 2026").
 - **British English.**
 - **No AI speak.** Do not use: leverage, robust, seamless, holistic, synergy, cutting-edge, streamlined, spearheaded, orchestrated, transformative, meticulous, fostered, thriving, pivotal, comprehensive (used vaguely), innovative (used vaguely), demonstrating, navigating, or any phrase a person would not say out loud. Avoid "genuine" and "serious about".
 - **No hedge adverbs.** Avoid: deeply, truly, highly, incredibly, extremely, very.
