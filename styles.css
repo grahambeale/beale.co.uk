@@ -437,18 +437,21 @@ h2 {
   gap: 0.5rem;
 }
 
-.timeline-company a {
+.timeline-company a,
+.timeline-desc a {
   color: var(--text);
   text-underline-offset: 4px;
   text-decoration-thickness: 1px;
 }
 
-.timeline-company a:hover {
+.timeline-company a:hover,
+.timeline-desc a:hover {
   color: var(--accent);
   text-decoration-thickness: 2px;
 }
 
-.timeline-company a:focus-visible {
+.timeline-company a:focus-visible,
+.timeline-desc a:focus-visible {
   outline: 2px solid var(--text);
   outline-offset: 4px;
 }
