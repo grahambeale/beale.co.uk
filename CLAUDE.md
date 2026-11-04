@@ -96,7 +96,7 @@ Non-negotiable. Graham built an ISO 30071-1:2019 accessibility programme at Mime
 
 **Links**
 - Descriptive link text. Never "click here".
-- The CV link states file type and size: `Download CV (PDF, 62KB)`. Update the size whenever the PDF changes.
+- The CV link states file type and size: `Download CV (PDF, 63KB)`. Update the size whenever the PDF changes.
 - Links that open a new tab use `target="_blank"` with `rel="noopener noreferrer"` and a visually hidden "(opens in new tab)".
 
 **Images**
